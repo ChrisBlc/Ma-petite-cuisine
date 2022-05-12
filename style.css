@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
+
+body{
+    margin: 0;
+    font-family: "Carter One", cursive;
+    background-color: #FFF2E2;
+}
+h1{
+    margin: 0;
+}
+header{
+    display: block;
+    height: 300px;
+    background-image: url(img/eggs.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+.navHeader{
+    color: white;
+
+}
+.navHeader ul{
+    display: flex;
+    padding-top: 20px;
+    margin-top: 0;
+    list-style: none; 
+    justify-content: flex-end;    
+}
+.navHeader a{
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    color: white;
+    padding-right: 20px;
+    padding-left: 20px;
+    border-right: solid 1px white;
+}
+header h1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+header h1::before{
+    display: inline-block;
+    content: "";
+    height: 90px;
+    width: 90px;
+    background-image: url(img/Logo.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+header form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 30px;
+}
+header input{
+    width: 80%;
+    height: 40px;
+    border-radius: 10px;
+    padding-left: 20px;
+    background-color: #FFF2E2 ;
+}
+header button{
+    background-image: url(Img/loupe.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #FFF2E2;
+    border: solid 0px;
+    width: 25px;
+    height: 25px;
+    margin-left: -35px;
+    transform: translateY(10px)
+}
+header form::before{
+    content: url(img/burger.png);
+    padding-right: 20px;
+    height: 40px;
+}
