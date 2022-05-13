@@ -186,7 +186,7 @@ section h2{
 }
 footer{
     background-image: url(Img/PhotoRecettes/eggs.jpg);
-    height: 100px ;
+    height: 70px ;
     display: flex;
     justify-content: space-between;
     align-items: center;
