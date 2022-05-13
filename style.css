@@ -7,10 +7,12 @@ body{
 }
 h1{
     margin: 0;
+    font-size: 50px ;
 }
 header{
-    display: block;
-    height: 300px;
+    display: flex;
+    flex-direction: column;
+    height: 350px;
     background-image: url(img/eggs.jpg);
     background-repeat: no-repeat;
     background-size:cover;
@@ -43,8 +45,8 @@ header h1{
 header h1::before{
     display: inline-block;
     content: "";
-    height: 90px;
-    width: 90px;
+    height: 140px;
+    width: 140px;
     background-image: url(img/Logo.svg);
     background-size: contain;
     background-repeat: no-repeat;
@@ -52,29 +54,149 @@ header h1::before{
 header form{
     display: flex;
     flex-direction: row;
+    justify-self: end;
     justify-content: center;
-    padding-top: 30px;
+    margin-top: 10px;
 }
 header input{
     width: 80%;
     height: 40px;
     border-radius: 10px;
     padding-left: 20px;
-    background-color: #FFF2E2 ;
+    background-color: #FFFFFF ;
+    border: 0px;
 }
 header button{
     background-image: url(Img/loupe.png);
     background-size: contain;
     background-repeat: no-repeat;
-    background-color: #FFF2E2;
+    background-color: #FFFFFF;
     border: solid 0px;
     width: 25px;
     height: 25px;
     margin-left: -35px;
-    transform: translateY(10px)
+    transform: translateY(9px)
 }
 header form::before{
     content: url(img/burger.png);
     padding-right: 20px;
     height: 40px;
+    transform: translateY(-5px);
+}
+.platDuJour{
+    display: block;
+    height: 400px;
+    width: 90%;
+    margin: 20px 0px;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+.platDuJour img{
+    height: 400px;
+    width: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.platDuJour label{
+    display: block;
+    color: #FFFFFF;
+    text-align: center;
+    margin-top: -90px;
+    font-size: 40px ;
+    filter: drop-shadow(5px 5px 2px #000000)
+}
+section h2{
+    margin-left: 5%;
+    font-size: 40px ;
+}
+.recetteContainer{
+    display: flex;
+    flex-wrap: wrap;
+    align-self: center;
+    margin: auto;
+    width: 95%;
+}
+.recetteCard{
+    width: 350px ;
+    height: 350px;
+    background-color: #FFFFFF;
+    margin: 30px auto ;
+}
+.recetteCard img{
+    display: block;
+    width: 318px;
+    height: 280px;
+    margin: 16px auto ;
+}
+
+/*.recetteCard:last-child{
+    justify-self:center;
+}*/
+.recetteTitle{
+    display: block;
+    color: #FFFFFF;
+    text-align: center;
+    margin-top: -60px;
+    font-size: 24px ;
+    filter: drop-shadow(5px 5px 2px #000000)
+}
+.recetteAvis{
+    display: flex;
+    justify-content: space-between;
+    text-align: right;
+    margin-top: 16px;
+    margin-right: 16px;
+    font-size: 24px ;
+}
+.etoiles {
+    display: inline-flex;
+    justify-content: center;
+    font-size: 3em;
+    margin-left: 16px;
+}
+.etoile{
+    content: url(Img/etoile.png);
+    display: block;
+    width: 30px;
+    height: 30px;
+}
+.grise{
+    content: url(Img/etoileGrise.png);
+}
+.ajout{
+    background-color: rgba(0,0,0,0);
+}
+.ajouter{
+    display: block;
+    text-align: center;
+    font-size: 30px ;
+}
+.ajouter::before{
+    content: "";
+    display: block;
+    width: 280px;
+    height: 280px;
+    margin: 16px auto ;
+    background-image: url(img/logoPlus.svg);
+    background-size:cover;
+    background-repeat: no-repeat;
+    color: #F9B2B2 ;
+}
+footer{
+    background-image: url(Img/PhotoRecettes/eggs.jpg);
+    height: 100px ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+}
+footer *{
+    margin: 0 20px;
+}
+footer a{
+    text-decoration: none;
+    color: #FFFFFF;
 }
