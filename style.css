@@ -5,6 +5,8 @@ body{
     font-family: "Carter One", cursive;
     background-color: #FFF2E2;
 }
+
+/* BANIERE */
 h1{
     margin: 0;
     font-size: 50px ;
@@ -19,9 +21,8 @@ header{
 }
 .navHeader{
     color: white;
-
 }
-.navHeader ul{
+.navHeader ul {
     display: flex;
     padding-top: 20px;
     margin-top: 0;
@@ -83,6 +84,45 @@ header form::before{
     height: 40px;
     transform: translateY(-5px);
 }
+
+
+
+/* PETITE BANNIERE*/
+
+.smallHeader{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    padding: 0px 10px;
+    position: relative;
+}
+.smallHeader h1{
+    font-size: 30px;
+    display: flex;
+    flex-direction: row;
+    order: 3;
+}
+.smallHeader h1::before{
+    height: 80px;
+    width: 80px;
+    margin-left: 60px;
+}
+.smallHeader form{
+    order: 2;
+}
+.smallHeader form::before{
+    position: absolute;
+    top: 30px;
+    left: 10px;
+}
+.smallHeader .navHeader{
+    order: 1
+}
+
+
+/*PLAT DU JOUR*/
 .platDuJour{
     display: block;
     height: 400px;
@@ -107,6 +147,7 @@ header form::before{
     font-size: 40px ;
     filter: drop-shadow(5px 5px 2px #000000)
 }
+/* CORPS PRINCIPAL*/
 section h2{
     margin-left: 5%;
     font-size: 40px ;
@@ -118,6 +159,7 @@ section h2{
     margin: auto;
     width: 95%;
 }
+/* VIGNETTE RECETTE*/
 .recetteCard{
     width: 350px ;
     height: 350px;
@@ -130,10 +172,6 @@ section h2{
     height: 280px;
     margin: 16px auto ;
 }
-
-/*.recetteCard:last-child{
-    justify-self:center;
-}*/
 .recetteTitle{
     display: block;
     color: #FFFFFF;
@@ -165,6 +203,7 @@ section h2{
 .grise{
     content: url(Img/etoileGrise.png);
 }
+/* VIGNETTE AJOUT*/
 .ajout{
     background-color: rgba(0,0,0,0);
 }
@@ -184,6 +223,8 @@ section h2{
     background-repeat: no-repeat;
     color: #F9B2B2 ;
 }
+
+/*PIED DE PAGE*/
 footer{
     background-image: url(Img/PhotoRecettes/eggs.jpg);
     background-size: cover;
