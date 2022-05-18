@@ -21,11 +21,11 @@ header{
 }
 .navHeader{
     color: white;
+    text-align: end;
 }
-.navHeader ul {
+.navHeader{
     display: flex;
-    padding-top: 20px;
-    margin-top: 0;
+    margin-top: 20px;
     list-style: none; 
     justify-content: flex-end;    
 }
@@ -33,8 +33,8 @@ header{
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
     color: white;
-    padding-right: 20px;
-    padding-left: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
     border-right: solid 1px white;
 }
 header h1{
@@ -60,8 +60,8 @@ header form{
     margin-top: 10px;
 }
 header input{
-    width: 80%;
     height: 40px;
+    width: 100%;
     border-radius: 10px;
     padding-left: 20px;
     background-color: #FFFFFF ;
@@ -90,6 +90,8 @@ header form::before{
 /* PETITE BANNIERE*/
 
 .smallHeader{
+    position: sticky;
+    top: 0px;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
@@ -97,6 +99,7 @@ header form::before{
     height: 100px;
     padding: 0px 10px;
     position: relative;
+    
 }
 .smallHeader h1{
     font-size: 30px;
@@ -110,6 +113,7 @@ header form::before{
     margin-left: 60px;
 }
 .smallHeader form{
+    width: 260px;
     order: 2;
 }
 .smallHeader form::before{
@@ -118,7 +122,13 @@ header form::before{
     left: 10px;
 }
 .smallHeader .navHeader{
+    margin-top: 5px;
+    flex-direction: column;
     order: 1
+}
+.smallHeader .navHeader a{
+    border-right: 0px;
+    margin: 5px;
 }
 
 
@@ -143,7 +153,7 @@ header form::before{
     display: block;
     color: #FFFFFF;
     text-align: center;
-    margin-top: -90px;
+    margin-top: -120px;
     font-size: 40px ;
     filter: drop-shadow(5px 5px 2px #000000)
 }
@@ -157,7 +167,7 @@ section h2{
     flex-wrap: wrap;
     align-self: center;
     margin: auto;
-    width: 95%;
+    max-width: 1200px ;
 }
 /* VIGNETTE RECETTE*/
 .recetteCard{
@@ -241,4 +251,50 @@ footer *{
 footer a{
     text-decoration: none;
     color: #FFFFFF;
+}
+
+@media screen and (max-width: 670px) {
+    .smallHeader h1{
+        font-size: 17px;
+        margin-left: 55px;
+    }
+    .smallHeader h1::before{
+        content: none;
+    }
+    header input::placeholder{
+        color: #FFFFFF;
+    }
+    .smallHeader .navHeader{
+        margin: 0;
+    }
+    .smallHeader .navHeader a{
+        display: block;
+        width: 30px;
+        height: 30px;
+        background-repeat: no-repeat;
+        overflow: hidden;
+        text-indent: 200px;
+        line-height: 200px;
+        margin: 0px;
+        padding: 0;
+        margin-left: 20px;
+        background-position: right;
+    }
+     .gerer{
+        background-image: url(Img/settings.svg); 
+    }
+    .maListe{
+        background-image: url(Img/list.svg);
+        transform: translateX(-8px);
+    }
+    .seConnecter{
+        background-image: url(Img/logIn.svg);
+        transform: translateX(-2px);
+    }
+    .platDuJour label{
+        font-size: 20px;
+    }
+    section h2{
+        font-size: 15px !important;
+    }
 }
