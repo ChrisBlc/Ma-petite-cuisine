@@ -62,12 +62,58 @@
             <label for="sansGluten">Sans gluten</label>
     </div>
     </div>
-    <select name="cout" id="bon">
+    <div class="selection1">
+    <select class="selection" name="cout" id="bon">
         <option value="">--choisir un coût--</option>
         <option value="bonMarche">Bon Marché</option>
         <option value="coutmoyen">Coût Moyen</option>
         <option value="assezCher">Assez Cher</option>
     </select>
-    <input type="number" name="parts" id="personnePart" placeholder="Nombre de parts" min="1">
+    <input class="selection" type="number" name="parts" id="personnePart" placeholder="Nombre de parts" min="1">
+    
+    <select class="selection" name="difficulte" id="dificile">
+        <option value="">--choisir un Facilité--</option>
+        <option value="facile">Facile</option>
+        <option value="moyen">Moyen</option>
+        <option value="dificile">Dificile</option>
     </select>
+    </div>
+    <div class="selection2">
+        <div  >
+            <label class="temps1" class="selection" for="tempsPreparation">--Temps de Préparation:</label>
+            <input type="time" id="tempsPreparation" name="temps" min="00:05" max="04:00" required>
+
+            <label class="temps2" class="selection" for="tempscuisson">--Temps de Cuisson:</label>
+            <input type="time" id="tempscuisson" name="temps" min="00:05" max="05:00" required>
+        </div>
+    </div>
+
+    <div class="selection1">
+        <select class="selectionIngredient" name="ingredient" id="ingred">
+            <option value="">--choisir un ingredient--</option>
+            <input type="checkbox" name="ingredient" id="tomate" value="1">
+            <label for="tomate">3 tomates</label><br>
+        <input type="checkbox" name="ingredient" id="huile" value="2">
+            <label for="huile">2cl d'huile d'olive</label><br>
+        <input type="checkbox" name="ingredient" id="mozarella" value="3">
+            <label for="mozarella">200g de mozarella</label><br>
+        <input type="checkbox" name="ingredient" id="basilic" value="4">
+            <label for="basilic">Basilic</label>
+            
+            
+            <ul>
+                <li>3 tomates</li>
+                <li>2cl d'huile d'olive</li>
+                <li>200g de mozarella</li>
+                <li>basilic</li>
+            </ul>
+        </select>
+    </div>
+
+                
+
+
+
+    </div>
+
 </form>

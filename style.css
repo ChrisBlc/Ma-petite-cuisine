@@ -272,3 +272,27 @@ form h2{
     justify-content: space-around;
     margin-top: 30px;
 }
+.selection1{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+.temps1 label{
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+.temps1 input{
+    margin: .4rem 0;
+}
+.temps2 label{
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+.temps2 input{
+    margin: .4rem 0;
+}
+.selection2{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
