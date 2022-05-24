@@ -89,33 +89,19 @@
     </div>
 
     <div class="selection1">
-        <select class="selectionIngredient" name="ingredient" id="ingred">
-            <option value="">--choisir un ingredient--</option>
-            <input type="checkbox" name="ingredient" id="tomate" value="1">
-            <label for="tomate">3 tomates</label><br>
-        <input type="checkbox" name="ingredient" id="huile" value="2">
-            <label for="huile">2cl d'huile d'olive</label><br>
-        <input type="checkbox" name="ingredient" id="mozarella" value="3">
-            <label for="mozarella">200g de mozarella</label><br>
-        <input type="checkbox" name="ingredient" id="basilic" value="4">
-            <label for="basilic">Basilic</label>
-            
-            
-           
-        </select>
-    </div>
-
-                
+        <div class="selection1">
+            <select class="selectionIngredient" name="ingredient" id="ingred">
+                <option value="">--choisir un ingredient--</option>
+                <option value="tomate">tomate</option>
+                <option value="huile">huile d'olive</option>
+                <option value="mozarella">mozarella</option>
+                <option value="basilic">Basilic</option>
+            </select>
+        </div>
+        <input class="selectionquantite" type="number" name="quantite" id="unite" placeholder="Quantité d'ingredient" min="1">
 
 
-
+     
     </div>
 
 </form>
-
-// <ul>
-    <li>3 tomates</li>
-    <li>2cl d'huile d'olive</li>
-    <li>200g de mozarella</li>
-    <li>basilic</li>
-</ul>//
