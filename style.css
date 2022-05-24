@@ -5,10 +5,12 @@ body{
     font-family: "Carter One", cursive;
     background-color: #FFF2E2;
 }
+
 a{
     text-decoration: none;
     color: inherit;
 }
+
 
 /* BANIERE */
 h1{
@@ -25,6 +27,7 @@ header{
 }
 .navHeader{
     color: white;
+
     text-align: end;
 }
 .navHeader{
@@ -94,6 +97,7 @@ header form .burger{
     width: 50px;
     transform: translateY(-5px);
 }
+
 .menuBurger{
     display: flex;
     justify-content: space-evenly;
@@ -146,6 +150,7 @@ header form .burger{
 /* PETITE BANNIERE*/
 
 .smallHeader{
+
     position: fixed;
     top: -100px;
     left: 0;
@@ -155,6 +160,7 @@ header form .burger{
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
+
     z-index: 20;
     padding: 0px 10px;
     transform: translateY(100px);
@@ -171,6 +177,7 @@ header form .burger{
 .smallHeader h1::before{
     height: 80px;
     width: 80px;
+
     margin-left: 20px;
 }
 .smallHeader form{
@@ -197,6 +204,7 @@ header form .burger{
 
     margin: 250px auto 0px auto;
 }
+
 
 /*PLAT DU JOUR*/
 .platDuJour{
@@ -324,6 +332,63 @@ footer a{
     text-decoration: none;
     color: #FFFFFF;
 }
+/* PAGE PROPOSITION*/
+.proTitre{
+    display: flex;
+    flex-direction: row;
+    justify-self: end;
+    justify-content: center;
+    margin-top: 10px;
+}
+.proTitre input{
+    width: 95%;
+    height: 40px;
+    border-radius: 10px;
+    padding-left: 20px;
+    background-color: #FFFFFF ;
+    border: 0px;
+}
+form h2{
+    margin-left: 5%;
+    font-size: 30px ;
+}
+.selection{
+    border: solid 1px black ;
+    border-radius: 10px;
+    width: 350px;
+    background-color: #FFFFFF;
+}
+.selections{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+.selection1{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+.temps1 label{
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+.temps1 input{
+    margin: .4rem 0;
+}
+.temps2 label{
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+.temps2 input{
+    margin: .4rem 0;
+}
+.selection2{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+
 /*VERSION MOBILE*/
 @media screen and (max-width: 670px) {
     /* BANNIERE VM*/
