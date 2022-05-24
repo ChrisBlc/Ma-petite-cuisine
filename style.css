@@ -5,6 +5,10 @@ body{
     font-family: "Carter One", cursive;
     background-color: #FFF2E2;
 }
+a{
+    text-decoration: none;
+    color: inherit;
+}
 
 /* BANIERE */
 h1{
@@ -42,6 +46,7 @@ header h1{
     flex-direction: column;
     align-items: center;
     color: white;
+    margin: 0 auto;
 }
 header h1::before{
     display: inline-block;
@@ -78,13 +83,64 @@ header button{
     margin-left: -35px;
     transform: translateY(9px)
 }
-header form::before{
-    content: url(img/burger.png);
-    padding-right: 20px;
-    height: 40px;
+
+/* BURGER */
+
+header form .burger{
+    background-image: url(img/burger.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50px;
+    width: 50px;
     transform: translateY(-5px);
 }
-
+.menuBurger{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    width: 90%;
+    height: 350px;
+    left: -101%;
+    background-color: #FFF2E2;
+    border-radius: 20px;
+    border: solid 1px #000000;
+}
+.menuBurger ul {
+    width: 100%;
+    padding-inline-start: 0;
+    text-align: center;
+    line-height: 50px;
+    list-style: none;
+    padding-right: 30px;
+    border-right: solid 1px #000000;
+}
+.menuBurger ul li:hover{
+    transform: scale(1.3);
+    transition: transform 0.3s;
+}
+.menuBurger .recetteCard{
+    background-color: transparent;
+    transform: scale(0.7);
+    margin: 0;
+}
+.menuBurgerVisible{
+    left: 5%;
+    transition: left 1s;
+    position: absolute;
+    float: left;
+}
+.croix{
+    position: absolute;
+    font-size: larger;
+    top: 10px;
+    right: 20px;
+}
+.croix:hover{
+    cursor: pointer;
+    transform: scale(1.3);
+    transition: transform 0.3s;
+}
 
 
 /* PETITE BANNIERE*/
@@ -107,6 +163,7 @@ header form::before{
 }
 .smallHeader h1{
     font-size: 30px;
+    margin-left: 40px;
     display: flex;
     flex-direction: row;
     order: 3;
@@ -114,14 +171,16 @@ header form::before{
 .smallHeader h1::before{
     height: 80px;
     width: 80px;
-    margin-left: 60px;
+    margin-left: 20px;
 }
 .smallHeader form{
     width: 260px;
     order: 2;
 }
-.smallHeader form::before{
+.smallHeader form .burger{
     position: absolute;
+    height: 60px;
+    width: 60px;
     top: 30px;
     left: 10px;
 }
@@ -134,7 +193,10 @@ header form::before{
     border-right: 0px;
     margin: 5px;
 }
+.smallHeader .menuBurger{
 
+    margin: 250px auto 0px auto;
+}
 
 /*PLAT DU JOUR*/
 .platDuJour{
@@ -219,9 +281,9 @@ section h2{
     content: url(Img/etoileGrise.png);
 }
 /* VIGNETTE AJOUT*/
-.ajout{
+/* .ajout{
     background-color: rgba(0,0,0,0);
-}
+} */
 .ajouter{
     display: block;
     text-align: center;
@@ -262,11 +324,12 @@ footer a{
     text-decoration: none;
     color: #FFFFFF;
 }
-
+/*VERSION MOBILE*/
 @media screen and (max-width: 670px) {
+    /* BANNIERE VM*/
     .smallHeader h1{
         font-size: 17px;
-        margin-left: 55px;
+        margin-left: 40px;
     }
     .smallHeader h1::before{
         content: none;
@@ -290,21 +353,59 @@ footer a{
         margin-left: 20px;
         background-position: right;
     }
+    
+    .smallHeader form .burger{
+        height: 40px;
+        width: 40px;
+    }
+    .smallHeader .navHeader a{
+        margin-right: 20px;
+    }
      .gerer{
         background-image: url(Img/settings.svg); 
+        background-repeat: no-repeat;
+        
     }
     .maListe{
         background-image: url(Img/list.svg);
         transform: translateX(-8px);
+        background-repeat: no-repeat;
     }
+    
     .seConnecter{
         background-image: url(Img/logIn.svg);
         transform: translateX(-2px);
+        background-repeat: no-repeat;
     }
-    .platDuJour label{
+
+   /*  PLAT DU JOUR VM */
+   .platDuJour{
+    margin-top: 110px;
+   }
+    .platDuJour .label{
         font-size: 20px;
     }
     section h2{
         font-size: 15px !important;
+    }
+    /* MENU BURGER */
+    .smallHeader .menuBurger{
+        height: 400px;
+        width: 90%;
+        top: 0;
+        overflow: scroll;
+        display: block;
+        flex-direction: column;
+        margin: 100px auto 0 auto;
+        justify-items: center;        
+    }
+    .smallHeader .menuBurger .menuBurgerVisible{
+        left: 5%;
+        margin: 100px auto 0 auto;
+        
+    }
+    .menuBurger ul{
+        border-right: solid 0px;
+        border-bottom: solid 1px #000000;
     }
 }
