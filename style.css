@@ -352,7 +352,40 @@ h3{
     margin-left: 80px;
 }
 
+/*PAGE INSCRIPTION*/
+.inscriptionContainer{
+    display: flex;
+    margin: 20px auto ;
+    flex-direction: column;
+    align-items: stretch center;
+    max-width: 450px;
+    text-align: center;
+}
+.inputInscription{
+    width: 90%;
+    margin-bottom: 15px; 
+}
+.inputInscription , .buttonInscription{
+    border: solid 1px lightgray;
+    border-radius: 20px;
+    padding-left: 10px;
+    background-color: #FFFFFF;
+    height: 50px;
+}
+.buttonInscription{
+    font-family: inherit;
+    width: 200px;
+    margin-top: 10px;
+}
 
+/*PAGE CONTACT*/
+.textContact{
+    width: 90%;
+    border: solid 1px lightgray;
+    border-radius: 20px;
+    padding-left: 10px;
+    background-color: #FFFFFF;
+}
 
 /*PIED DE PAGE*/
 footer{
@@ -428,7 +461,42 @@ form h2{
     margin-top: 30px;
 }
 
+/* PAGE GESTION*/
+.gestionContainer{
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    text-align: center;
+}
+.gestionContainer ul{
+    list-style: none;
+}
+.gestionRecette{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    background-color: #FFFFFF;
+    border: solid 1px lightgray;
+    border-radius: 20px;
+    padding: 0px 20px;
+    margin-bottom: 10px;
+}
+.gestionRecette a {
+    border: solid 1px lightgray;
+    border-radius: 10px;
+    padding: 10px;
+}
 
+/*LISTE DE COURSE */
+.listeContainer{
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    text-align: center;
+}
 /*VERSION MOBILE*/
 @media screen and (max-width: 670px) {
     /* BANNIERE VM*/
@@ -513,4 +581,13 @@ form h2{
         border-right: solid 0px;
         border-bottom: solid 1px #000000;
     }
+    /* INSCRIPTION ET CONTACT VM*/
+    .inscriptionContainer{
+        margin-top: 110px;
+    }
+    /* GESTION VM */
+    .gestionContainer{
+        margin-top: 110px;
+    }
+
 }
