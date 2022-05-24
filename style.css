@@ -5,6 +5,10 @@ body{
     font-family: "Carter One", cursive;
     background-color: #FFF2E2;
 }
+a{
+    text-decoration: none;
+    color: inherit;
+}
 
 /* BANIERE */
 h1{
@@ -21,11 +25,11 @@ header{
 }
 .navHeader{
     color: white;
+    text-align: end;
 }
-.navHeader ul {
+.navHeader{
     display: flex;
-    padding-top: 20px;
-    margin-top: 0;
+    margin-top: 20px;
     list-style: none; 
     justify-content: flex-end;    
 }
@@ -33,8 +37,8 @@ header{
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
     color: white;
-    padding-right: 20px;
-    padding-left: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
     border-right: solid 1px white;
 }
 header h1{
@@ -42,6 +46,7 @@ header h1{
     flex-direction: column;
     align-items: center;
     color: white;
+    margin: 0 auto;
 }
 header h1::before{
     display: inline-block;
@@ -60,8 +65,8 @@ header form{
     margin-top: 10px;
 }
 header input{
-    width: 80%;
     height: 40px;
+    width: 80%;
     border-radius: 10px;
     padding-left: 20px;
     background-color: #FFFFFF ;
@@ -78,28 +83,87 @@ header button{
     margin-left: -35px;
     transform: translateY(9px)
 }
-header form::before{
-    content: url(img/burger.png);
-    padding-right: 20px;
-    height: 40px;
+
+/* BURGER */
+
+header form .burger{
+    background-image: url(img/burger.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50px;
+    width: 50px;
     transform: translateY(-5px);
 }
-
+.menuBurger{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    width: 90%;
+    height: 350px;
+    left: -101%;
+    background-color: #FFF2E2;
+    border-radius: 20px;
+    border: solid 1px #000000;
+}
+.menuBurger ul {
+    width: 100%;
+    padding-inline-start: 0;
+    text-align: center;
+    line-height: 50px;
+    list-style: none;
+    padding-right: 30px;
+    border-right: solid 1px #000000;
+}
+.menuBurger ul li:hover{
+    transform: scale(1.3);
+    transition: transform 0.3s;
+}
+.menuBurger .recetteCard{
+    background-color: transparent;
+    transform: scale(0.7);
+    margin: 0;
+}
+.menuBurgerVisible{
+    left: 5%;
+    transition: left 1s;
+    position: absolute;
+    float: left;
+}
+.croix{
+    position: absolute;
+    font-size: larger;
+    top: 10px;
+    right: 20px;
+}
+.croix:hover{
+    cursor: pointer;
+    transform: scale(1.3);
+    transition: transform 0.3s;
+}
 
 
 /* PETITE BANNIERE*/
 
 .smallHeader{
+    position: fixed;
+    top: -100px;
+    left: 0;
+    height: 100px;
+    width: 100%;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
-    height: 100px;
+    z-index: 20;
     padding: 0px 10px;
-    position: relative;
+    transform: translateY(100px);
+    transition: transform 1s ;
+    
 }
 .smallHeader h1{
     font-size: 30px;
+    margin-left: 40px;
     display: flex;
     flex-direction: row;
     order: 3;
@@ -107,27 +171,39 @@ header form::before{
 .smallHeader h1::before{
     height: 80px;
     width: 80px;
-    margin-left: 60px;
+    margin-left: 20px;
 }
 .smallHeader form{
+    width: 260px;
     order: 2;
 }
-.smallHeader form::before{
+.smallHeader form .burger{
     position: absolute;
+    height: 60px;
+    width: 60px;
     top: 30px;
     left: 10px;
 }
 .smallHeader .navHeader{
+    margin-top: 5px;
+    flex-direction: column;
     order: 1
 }
+.smallHeader .navHeader a{
+    border-right: 0px;
+    margin: 5px;
+}
+.smallHeader .menuBurger{
 
+    margin: 250px auto 0px auto;
+}
 
 /*PLAT DU JOUR*/
 .platDuJour{
     display: block;
     height: 400px;
     width: 90%;
-    margin: 20px 0px;
+    margin: 40px 0px;
     margin-left: auto;
     margin-right: auto;
     
@@ -139,14 +215,15 @@ header form::before{
     object-fit: cover;
 }
 
-.platDuJour label{
+.platDuJour .label{
     display: block;
     color: #FFFFFF;
     text-align: center;
-    margin-top: -90px;
+    margin-top: -120px;
     font-size: 40px ;
     filter: drop-shadow(5px 5px 2px #000000)
 }
+
 /* CORPS PRINCIPAL*/
 section h2{
     margin-left: 5%;
@@ -157,7 +234,7 @@ section h2{
     flex-wrap: wrap;
     align-self: center;
     margin: auto;
-    width: 95%;
+    max-width: 1200px ;
 }
 /* VIGNETTE RECETTE*/
 .recetteCard{
@@ -204,20 +281,25 @@ section h2{
     content: url(Img/etoileGrise.png);
 }
 /* VIGNETTE AJOUT*/
-.ajout{
+/* .ajout{
     background-color: rgba(0,0,0,0);
-}
+} */
 .ajouter{
     display: block;
     text-align: center;
     font-size: 30px ;
+    height: 350px;
+    text-decoration: none;
+    color: #000000;
+    margin-top: 12px;
 }
+
 .ajouter::before{
     content: "";
     display: block;
     width: 280px;
     height: 280px;
-    margin: 16px auto ;
+    margin: auto ;
     background-image: url(img/logoPlus.svg);
     background-size:cover;
     background-repeat: no-repeat;
@@ -241,4 +323,89 @@ footer *{
 footer a{
     text-decoration: none;
     color: #FFFFFF;
+}
+/*VERSION MOBILE*/
+@media screen and (max-width: 670px) {
+    /* BANNIERE VM*/
+    .smallHeader h1{
+        font-size: 17px;
+        margin-left: 40px;
+    }
+    .smallHeader h1::before{
+        content: none;
+    }
+    header input::placeholder{
+        color: #FFFFFF;
+    }
+    .smallHeader .navHeader{
+        margin: 0;
+    }
+    .smallHeader .navHeader a{
+        display: block;
+        width: 30px;
+        height: 30px;
+        background-repeat: no-repeat;
+        overflow: hidden;
+        text-indent: 200px;
+        line-height: 200px;
+        margin: 0px;
+        padding: 0;
+        margin-left: 20px;
+        background-position: right;
+    }
+    
+    .smallHeader form .burger{
+        height: 40px;
+        width: 40px;
+    }
+    .smallHeader .navHeader a{
+        margin-right: 20px;
+    }
+     .gerer{
+        background-image: url(Img/settings.svg); 
+        background-repeat: no-repeat;
+        
+    }
+    .maListe{
+        background-image: url(Img/list.svg);
+        transform: translateX(-8px);
+        background-repeat: no-repeat;
+    }
+    
+    .seConnecter{
+        background-image: url(Img/logIn.svg);
+        transform: translateX(-2px);
+        background-repeat: no-repeat;
+    }
+
+   /*  PLAT DU JOUR VM */
+   .platDuJour{
+    margin-top: 110px;
+   }
+    .platDuJour .label{
+        font-size: 20px;
+    }
+    section h2{
+        font-size: 15px !important;
+    }
+    /* MENU BURGER */
+    .smallHeader .menuBurger{
+        height: 400px;
+        width: 90%;
+        top: 0;
+        overflow: scroll;
+        display: block;
+        flex-direction: column;
+        margin: 100px auto 0 auto;
+        justify-items: center;        
+    }
+    .smallHeader .menuBurger .menuBurgerVisible{
+        left: 5%;
+        margin: 100px auto 0 auto;
+        
+    }
+    .menuBurger ul{
+        border-right: solid 0px;
+        border-bottom: solid 1px #000000;
+    }
 }
