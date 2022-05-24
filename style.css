@@ -398,6 +398,14 @@ form h2{
     width: 350px;
     background-color: #FFFFFF;
 }
+.menuDeroulant{
+    border: solid 1px black ;
+    border-radius: 10px;
+    width: 350px;
+    background-color: #FFFFFF;
+    padding-left: 25px;
+    margin-left: 60px;
+}
 .selections{
     display: flex;
     justify-content: space-around;
@@ -408,18 +416,11 @@ form h2{
     justify-content: space-around;
     margin-top: 30px;
 }
-.temps1 label{
+.selectionTemps label{
     display: block;
     font: 1rem 'Fira Sans', sans-serif;
 }
-.temps1 input{
-    margin: .4rem 0;
-}
-.temps2 label{
-    display: block;
-    font: 1rem 'Fira Sans', sans-serif;
-}
-.temps2 input{
+.selectionTemps input{
     margin: .4rem 0;
 }
 .selection2{
@@ -427,7 +428,38 @@ form h2{
     justify-content: space-around;
     margin-top: 30px;
 }
-
+.selectionIngredient{
+    display: block;
+    width: 95%;
+    height: 60%;
+    border-radius: 10px;
+    padding: 30px;
+    background-color: #FFFFFF ;
+    border: 0px;
+}
+.ajoutingredient{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+.ingredientAjout{
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-self: flex-end;
+    margin-top: 30px;
+    
+}
+.ajoutNouvelIngredient{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.listeIngredient{
+    padding: 0 200px;
+}
 
 /*VERSION MOBILE*/
 @media screen and (max-width: 670px) {
