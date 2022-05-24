@@ -381,12 +381,15 @@ footer a{
     margin-top: 10px;
 }
 .proTitre input{
-    width: 95%;
+    width: 90%;
     height: 40px;
     border-radius: 10px;
     padding-left: 20px;
     background-color: #FFFFFF ;
     border: 0px;
+}
+h2{
+    text-align: center;
 }
 form h2{
     margin-left: 5%;
@@ -397,24 +400,23 @@ form h2{
     border-radius: 10px;
     width: 350px;
     background-color: #FFFFFF;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .menuDeroulant{
     border: solid 1px black ;
     border-radius: 10px;
     width: 350px;
     background-color: #FFFFFF;
-    padding-left: 25px;
-    margin-left: 60px;
+    padding-left: 10px;
+    height: 50px;
 }
 .selections{
     display: flex;
     justify-content: space-around;
-    margin-top: 30px;
-}
-.selection1{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 .selectionTemps label{
     display: block;
@@ -423,42 +425,73 @@ form h2{
 .selectionTemps input{
     margin: .4rem 0;
 }
-.selection2{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 30px;
-}
 .selectionIngredient{
     display: block;
-    width: 95%;
+    width: 90%;
     height: 60%;
     border-radius: 10px;
-    padding: 30px;
+    padding: 5px 0;
     background-color: #FFFFFF ;
     border: 0px;
+    margin: 30px auto;
+   
 }
 .ajoutingredient{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: 30px;
+    width: 90%;
+    margin: 30px auto;
+    flex-direction: row;
+}
+.selectionquantite{
+    border: solid 1px black ;
+    border-radius: 10px;
+    width: 350px;
+    background-color: #FFFFFF;
+    padding-left: 25px;
+    height: 50px;
+}
+.selectionAjouter{
+    border: solid 1px black ;
+    border-radius: 10px;
+    width: 150px;
+    background-color: #FFFFFF;
+    padding-left: 10px;
+    height: 40px;
 }
 .ingredientAjout{
     display: flex;
     width: 90%;
-    margin: 0 auto;
+    margin: 30px auto;
     flex-direction: row;
     justify-content: space-between;
     justify-self: flex-end;
-    margin-top: 30px;
-    
 }
 .ajoutNouvelIngredient{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+    justify-self: flex-end; 
 }
 .listeIngredient{
-    padding: 0 200px;
+    padding: 0 50px;
+}
+.selectionAjouterEtape{
+    width: 90%;
+    margin: 30px auto;
+}
+.selectionAjouterEtape textarea{
+    border: solid 1px black ;
+    border-radius: 10px;
+    padding-top: 20px;
+    text-align: center;
+    display: flex;
+    margin: 10px auto;     
+}
+.validerRecette{
+    padding: 0 40%;
+    margin: 30px;
 }
 
 /*VERSION MOBILE*/
@@ -514,7 +547,7 @@ form h2{
         transform: translateX(-2px);
         background-repeat: no-repeat;
     }
-
+   
    /*  PLAT DU JOUR VM */
    .platDuJour{
     margin-top: 110px;
