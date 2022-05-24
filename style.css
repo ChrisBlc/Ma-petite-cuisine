@@ -314,7 +314,9 @@ section h2{
     color: #F9B2B2 ;
 }
 /* PAGE RECETTE*/
-
+.corpsPageRecette{
+    width: auto;
+}
 .section,.username{
     display: inline;
 }
@@ -351,7 +353,32 @@ h3{
 .nbrPersonnes{
     margin-left: 80px;
 }
-
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+}
+.ajouterListe{
+    font-family: 'Carter One';
+    font-size: 30px;
+    border-radius: 10px;
+    padding: 3px;
+}
+.listIngredients{
+    display: flex;
+    overflow:;
+    width: 95%;
+    max-height: ;
+    text-align: center;
+}
+.cardIngredients img{
+    display:block;
+    margin: auto;
+    object-fit: contain;
+    width: 150px;
+    height: 150px;
+    text-align: justify;
+}
 
 
 /*PIED DE PAGE*/
