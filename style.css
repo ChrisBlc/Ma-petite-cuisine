@@ -321,11 +321,23 @@ section h2{
     display: inline;
 }
 .bandeau{
-    margin: 10px auto;
+    justify-content: space-between;
+    display:flex;
     width: 90%;
     height: 66px;
     background: #B2F9B9;
-    border-radius: 10px;
+    border-radius: 20px;
+    margin: 10px auto;
+    align-items: center;
+}
+.bandeauDroite{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 25px;
+}
+h2{
+    margin-left: 25px;
 }
 h3{
     font-family: 'Carter One';
@@ -348,15 +360,13 @@ h3{
     display: block;
     width: 90%;
     height: 550px;
-    border-radius: 10px;
-}
-.nbrPersonnes{
-    margin-left: 80px;
+    border-radius: 20px;
 }
 .buttons{
     display: flex;
     justify-content: space-between;
-    width: 95%;
+    width: 90%;
+    margin: 0 5%;
 }
 .ajouterListe{
     font-family: 'Carter One';
@@ -366,10 +376,11 @@ h3{
 }
 .listIngredients{
     display: flex;
-    overflow:;
-    width: 95%;
-    max-height: ;
+    flex-wrap: wrap;
+    width: 90%;
     text-align: center;
+    margin: 10px auto;
+    justify-content: flex-start;
 }
 .cardIngredients img{
     display:block;
@@ -378,9 +389,51 @@ h3{
     width: 150px;
     height: 150px;
     text-align: justify;
+    margin: 0 10px;
 }
+.pEtapes{
+    width: 90%;
+    margin: 0 5%;
+    text-align: justify;
+    margin-bottom: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.buttonExporter{
+    display: block;
+    text-align: center;
+}
+.exporter{
+    font-family: 'Carter One';
+    width: 30%;
+    font-size: 30px;
+    border-radius: 10px;
+    padding: 3px;
+    margin-bottom: 25px;
+}
+.blockCommentaires{
+    display: block;
+    text-align: center;
 
 
+ /* align-items: center;
+    border: #000000;
+    border-radius: 10px;
+    width: 95%;
+    background-color: #FFF2E2;*/
+}
+/* .bandeauCommentaires{
+    display:flex;
+    width: 90%;
+    height: 66px;
+    background: #F9B2B2;
+    border-radius: 20px;
+    margin: 10px auto;
+    align-items: center;
+} */
+.rouge{
+    background-color: #F9B2B2;
+}
 /*PIED DE PAGE*/
 footer{
     background-image: url(Img/PhotoRecettes/eggs.jpg);
@@ -539,5 +592,8 @@ form h2{
     .menuBurger ul{
         border-right: solid 0px;
         border-bottom: solid 1px #000000;
+    }
+    .cardIngredients img{
+        display: none;
     }
 }
