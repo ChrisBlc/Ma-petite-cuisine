@@ -240,15 +240,22 @@ h3{
     font-size: 30px;
     color: rgba(0, 0, 0, 0.53);
 }
-.divPhoto{
+.h3Bandeau{
+    font-family: 'Carter One';
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.53);
+    margin-left: 80px;
+}
+/*.divPhoto{
     height: 550px;
     width: auto;
     overflow: hidden;
-}
+}*/
 .photoPrincipale{
-    margin: -200px auto;
+    margin: auto;
     display: block;
     width: 90%;
+    height: 550px;
     border-radius: 10px;
 }
 .nbrPersonnes{
