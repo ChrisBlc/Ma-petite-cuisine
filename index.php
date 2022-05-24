@@ -1,38 +1,19 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <title>Ma Petite Cuisine</title>
-</head>
-<body>
-    <header>
-        <nav class="navHeader">
-            <ul>
-                <li><a href="#">Gérer</a></li>
-                <li><a href="#">Ma liste de course</a></li>
-                <li><a href="#">Se connecter</a></li>
-            </ul>
-        </nav>
-        <h1>Ma Petite Cuisine</h1>
-        <form action="#">
-            <input type="text" placeholder="Recherche par plats ou ingrédients">
-            <button type="submit"></button>
-        </form>
-    </header>
+<?php 
+require_once("banniere.php");?>
+
+
     <div class="platDuJour">
         <img src="img/PhotoRecettes/Pates-au-Pesto-De-coriandre.jpg" alt="Photo de pate au pesto de coriandre">
-        <label>Recettes du jour: Pates au pesto de coriandre </label>
+        <div class="label">Recettes du jour: Pates au pesto de coriandre </div>
     </div>
     <section>
         <h2>Tendance cette saison</h2>
         <div class="recetteContainer">
             <div class="recetteCard">
-                <img src="img/bobun-light-square.jpg" alt="Bo Bun">
-                <div class="recetteTitle">Bo-bun</div>
+                <a href=""> 
+                    <img src="img/bobun-light-square.jpg" alt="Bo Bun">
+                    <div class="recetteTitle">Bo-bun</div>
+                </a>  
                 <div class="recetteAvis">
                     <div class="etoiles">
                         <i class="etoile "></i>
@@ -143,13 +124,10 @@
                 </div>
             </div>
             <div class="recetteCard ajout">
-                <div class="ajouter">Ajouter une recette</div>
+                <a class="ajouter"  href="#">Ajouter une recette</a>
             </div>
         </div>
     </section>
-    <footer>
-        <div>© 2022  Tous droits réservés. conçu par Philippe, Ugo et Christopher</div>
-        <a href="#">Contacts</a>
-    </footer>
-</body>
-</html>
+    
+
+<?php require_once("piedPage.php"); ?>
