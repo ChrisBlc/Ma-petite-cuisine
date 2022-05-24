@@ -313,6 +313,46 @@ section h2{
     background-repeat: no-repeat;
     color: #F9B2B2 ;
 }
+/* PAGE RECETTE*/
+
+.section,.username{
+    display: inline;
+}
+.bandeau{
+    margin: 10px auto;
+    width: 90%;
+    height: 66px;
+    background: #B2F9B9;
+    border-radius: 10px;
+}
+h3{
+    font-family: 'Carter One';
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.53);
+}
+.h3Bandeau{
+    font-family: 'Carter One';
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.53);
+    margin-left: 80px;
+}
+/*.divPhoto{
+    height: 550px;
+    width: auto;
+    overflow: hidden;
+}*/
+.photoPrincipale{
+    margin: auto;
+    display: block;
+    width: 90%;
+    height: 550px;
+    border-radius: 10px;
+}
+.nbrPersonnes{
+    margin-left: 80px;
+}
+
+
 
 /*PIED DE PAGE*/
 footer{
