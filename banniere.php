@@ -15,11 +15,11 @@
             <a class="maListe" href="#">Ma liste de course</a>
             <a  class="seConnecter"href="#">Se connecter</a>
         </nav>
-        <h1> <a href="index.html">Ma Petite Cuisine </a></h1>
+        <h1> <a href="index.php">Ma Petite Cuisine </a></h1>
         <form action="#">
             <div class="burger"></div>
-            <input type="text" name="Recherche" placeholder="Recherche (plats,ingrédients)">
-            <button type="submit"></button>
+            <input class="recherche" type="text" name="Recherche" placeholder="Recherche (plats,ingrédients)">
+            <button class="loupe" type="submit"></button>
         </form>
         <div class="menuBurger">
                     <ul>
@@ -50,5 +50,29 @@
                     <a class="ajouter"  href="#">Ajouter une recette</a>
                 </div>
                 <div class="croix">X</div>
+        </div>
+        <div id="connexion" class="popUp">
+            <h2>Connexion</h2>
+            <form action="" method="post">
+                <input class="inputInscription" type="text" name="mail" placeholder="Mail">   
+                <input class="inputInscription" type="password" name="mdp" placeholder="Mot de passe">   
+                <button class="buttonInscription" type="submit">Connexion</button>
+            </form>
+            <div class="mdpOublie">
+                <a href="" id="linkMdpRecup">Mot de passe oublié?</a>
+                <a href="">Pas de compte? S'inscrire</a>
+            </div>
+            <div class="croix">X</div>
+        </div>
+        <div id="mdpRecup" class="popUp">
+            <h2>Mot de passe oublié</h2>
+            <form action="" method="post">
+                <input class="inputInscription" type="text" name="mail" placeholder="E-mail">   
+                <button class="buttonInscription" type="submit">Envoyer</button>
+            </form>
+            <div class="mdpOublie">
+                <a href="">Pas de compte? S'inscrire</a>
+            </div>
+            <div class="croix">X</div>
         </div>
     </header>
