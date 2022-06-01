@@ -84,7 +84,11 @@ header h1::before{
     width: 25px;
     height: 25px;
     margin-left: -35px;
-    transform: translateY(9px)
+    transform: translateY(9px);
+    cursor: pointer;
+}
+.seConnecter{
+    cursor: pointer;
 }
 
 /* BURGER */
@@ -96,6 +100,7 @@ header form .burger{
     height: 50px;
     width: 50px;
     transform: translateY(-5px);
+    cursor: pointer;
 }
 
 .menuBurger{
@@ -243,7 +248,9 @@ header form .burger{
     width: 80%;
     justify-content: space-between;
     margin-bottom: 10px ;
+    cursor: pointer;
 }
+
 /*PLAT DU JOUR*/
 .platDuJour{
     display: block;
@@ -293,13 +300,16 @@ section h2{
     display: block;
     width: 318px;
     height: 280px;
+    overflow: hidden;
     margin: 16px auto ;
 }
 .recetteTitle{
     display: block;
     color: #FFFFFF;
     text-align: center;
-    margin-top: -60px;
+    width: 300px;
+    height: 80px;
+    margin: -100px auto 0 auto;
     font-size: 24px ;
     filter: drop-shadow(5px 5px 2px #000000)
 }
@@ -307,29 +317,36 @@ section h2{
     display: flex;
     justify-content: space-between;
     text-align: right;
-    margin-top: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     margin-right: 16px;
     font-size: 24px ;
 }
 .etoiles {
-    display: inline-flex;
-    justify-content: center;
-    font-size: 3em;
+    background-image: url("Img/Etoiles.svg");
+    background-repeat: no-repeat;
     margin-left: 16px;
+    width: 196px;
+    height: 42px;
 }
-.etoile{
-    content: url(Img/etoile.png);
-    display: block;
-    width: 30px;
-    height: 30px;
+.zero{
+    background-position-y: -214px;
 }
-.grise{
-    content: url(Img/etoileGrise.png);
+.une{
+    background-position-y: -172px;
 }
+.deux{
+    background-position-y: -130px;
+}
+.trois{
+    background-position-y: -88px;
+}
+.quatre{
+    background-position-y: -46px;
+}
+
 /* VIGNETTE AJOUT*/
-/* .ajout{
-    background-color: rgba(0,0,0,0);
-} */
+
 .ajouter{
     display: block;
     text-align: center;
@@ -641,8 +658,8 @@ form h2{
         background-image: url(Img/logIn.svg);
         transform: translateX(-2px);
         background-repeat: no-repeat;
+        cursor: pointer;
     }
-
    /*  PLAT DU JOUR VM */
    .platDuJour{
     margin-top: 110px;

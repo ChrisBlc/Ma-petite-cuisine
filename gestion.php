@@ -1,4 +1,5 @@
 <?php 
+$titrePage = 'Gestion';
 require_once("banniere.php");?>
 
 <div class="gestionContainer">

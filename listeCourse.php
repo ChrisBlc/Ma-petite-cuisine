@@ -1,4 +1,5 @@
 <?php 
+$titrePage = 'Ma liste de course';
 require_once("banniere.php");?>
 
 <div class="listeContainer">

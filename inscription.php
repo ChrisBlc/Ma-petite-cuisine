@@ -1,4 +1,5 @@
 <?php 
+$titrePage = 'Inscription';
 require_once("banniere.php");
 ?>
 <div class="inscriptionContainer">

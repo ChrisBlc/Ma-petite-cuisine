@@ -12,7 +12,10 @@ $(function(){
     $("#connexion").fadeOut(700);
   });
   $('#linkMdpRecup').click(function() {
-    $('#mdpRecup').show()
+    $("#connexion").fadeOut(700, function(){
+      $('#mdpRecup').fadeIn(700)
+    });
+    
   });
 
   /* MDP OUBLIE*/

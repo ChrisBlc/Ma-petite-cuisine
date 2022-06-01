@@ -1,4 +1,5 @@
 <?php 
+$titrePage = 'Contacts';
 require_once("banniere.php");
 ?>
 
@@ -10,12 +11,6 @@ require_once("banniere.php");
         <button class="buttonInscription" type="submit">Envoyer</button>
     </form>
 </div>
-
-
-
-
-
-
 
 
 <?php require_once("piedPage.php");?>
