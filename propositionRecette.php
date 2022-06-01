@@ -98,7 +98,7 @@ require_once("banniere.php");?>
                         <button class="selectionAjouter" type="submit" name="submit">Ajouter l'ingrédient</button>
                     </div>
                 </div>
-        </div>
+            </div>
      <div class="selectionAjouterEtape">
         <textarea name="textarea" placeholder="Etape1: Rentrez vous instructions" rows="5" cols="180"></textarea>
         <textarea name="textarea" placeholder="Etape2: Rentrez vous instructions" rows="5" cols="180"></textarea>
