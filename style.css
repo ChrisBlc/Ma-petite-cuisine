@@ -369,16 +369,30 @@ section h2{
     color: #F9B2B2 ;
 }
 /* PAGE RECETTE*/
-
+.corpsPageRecette{
+    width: auto;
+}
 .section,.username{
     display: inline;
 }
 .bandeau{
-    margin: 10px auto;
+    justify-content: space-between;
+    display:flex;
     width: 90%;
     height: 66px;
     background: #B2F9B9;
-    border-radius: 10px;
+    border-radius: 20px;
+    margin: 10px auto;
+    align-items: center;
+}
+.bandeauDroite{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 25px;
+}
+h2{
+    margin-left: 25px;
 }
 h3{
     font-family: 'Carter One';
@@ -401,11 +415,95 @@ h3{
     display: block;
     width: 90%;
     height: 550px;
+    border-radius: 20px;
+}
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 5%;
+    font-family: 'Carter One';
+    font-size: 30px;
     border-radius: 10px;
+    padding: 3px;
 }
-.nbrPersonnes{
-    margin-left: 80px;
+/*.ajouterListe{
+    font-family: 'Carter One';
+    font-size: 30px;
+    border-radius: 10px;
+    padding: 3px;
+}*/
+.listIngredients{
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    text-align: center;
+    margin: 10px auto;
+    justify-content: flex-start;
 }
+.cardIngredients img{
+    display:block;
+    margin: auto;
+    object-fit: contain;
+    width: 150px;
+    height: 150px;
+    text-align: justify;
+    margin: 0 10px;
+}
+.pEtapes{
+    width: 90%;
+    margin: 0 5%;
+    text-align: justify;
+    margin-bottom: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.buttonExporter{
+    display: block;
+    text-align: center;
+}
+.exporter{
+    font-family: 'Carter One';
+    width: 30%;
+    font-size: 30px;
+    border-radius: 10px;
+    padding: 3px;
+    margin-bottom: 25px;
+}
+.blockCommentaires{
+    justify-content: space-between;
+    display:flex;
+    width: 90%;
+    height: auto;
+    background: #F9E8D3;
+    border-radius: 20px;
+    margin: 10px auto;
+    align-items: center;
+}
+.bandeauRouge{
+    justify-content: space-between;
+    display:flex;
+    width: 90%;
+    height: 66px;
+    border-radius: 20px;
+    margin: 15px auto;
+    align-items: center;
+    background-color: #F9B2B2;
+}
+.commentairesRecette{
+    display: block;
+    width: auto;
+    background-color: #FCD6D6;
+    width: 90%;
+    border-radius: 20px;
+    margin: 10px auto;
+    align-items: center;
+}
+
+
+
+
+
 
 /*PAGE INSCRIPTION*/
 .inscriptionContainer{
@@ -753,6 +851,7 @@ form h2{
         border-right: solid 0px;
         border-bottom: solid 1px #000000;
     }
+
     /* INSCRIPTION ET CONTACT VM*/
     .inscriptionContainer{
         margin-top: 110px;
@@ -780,4 +879,10 @@ form h2{
     .connexion {
         top: -110px;
     }
+  
+  /* PAGE RECETTE VM */
+    .cardIngredients img{
+          display: none;
+      }
+
 }
