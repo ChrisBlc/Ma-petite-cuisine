@@ -84,7 +84,7 @@ require_once("banniere.php");
             <h2>Etape 1 :</h2>
         </div>
         <p class="pEtapes">Cisailler la viande en tranches très fines, et faire mariner au frigo avec le curry, ail,
-             glutamate et les sauces, au moins 30 mn.</p>
+             glutamate et les sauces, au moins 30 minutes.</p>
         <div class='bandeau'>
             <h2>Etape 2 :</h2>
         </div>
@@ -101,21 +101,14 @@ require_once("banniere.php");
             <button class="exporter">Exporter en PDF</button></div>
         </div>
         <div class="blockCommentaires">
-            <div class="fondCommentaires">
-                <div class="bandeau rouge">
-                    <h2>Commentaires</h2>
-                </div>
+           <div class="bandeauRouge">
+               <h2>Commentaires :</h2>
                 <div class="commentairesRecette">
-
-
+                    <div class="usercommentaire">Alexandre 321</div>
+                    <div class="commentaire">Très bonne recette, merci !</div>
                 </div>
-
             </div>
         </div>
-    
-    
-    
-    
     </div>
 </body>
 </html>
