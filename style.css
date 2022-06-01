@@ -60,14 +60,14 @@ header h1::before{
     background-size: contain;
     background-repeat: no-repeat;
 }
-header form{
+ header form{
     display: flex;
     flex-direction: row;
     justify-self: end;
     justify-content: center;
     margin-top: 10px;
 }
-header input{
+.recherche{
     height: 40px;
     width: 80%;
     border-radius: 10px;
@@ -75,7 +75,7 @@ header input{
     background-color: #FFFFFF ;
     border: 0px;
 }
-header button{
+.loupe{
     background-image: url(Img/loupe.png);
     background-size: contain;
     background-repeat: no-repeat;
@@ -84,7 +84,11 @@ header button{
     width: 25px;
     height: 25px;
     margin-left: -35px;
-    transform: translateY(9px)
+    transform: translateY(9px);
+    cursor: pointer;
+}
+.seConnecter{
+    cursor: pointer;
 }
 
 /* BURGER */
@@ -96,6 +100,7 @@ header form .burger{
     height: 50px;
     width: 50px;
     transform: translateY(-5px);
+    cursor: pointer;
 }
 
 .menuBurger{
@@ -204,7 +209,47 @@ header form .burger{
 
     margin: 250px auto 0px auto;
 }
+.smallHeader .connexion{
+    top: 30%;
+}
+.smallHeader .connexion form input{
+    text-align: center;
+}
 
+/*CONNEXION*/
+.popUp{
+    width: 60%;
+    top:10%;
+    left: 20%;
+    position: absolute;
+    display: flex;
+    flex-direction: column ;
+    align-items: center;
+    background-color: #FFF2E2;
+    border: solid 1px lightgray;
+    border-radius: 20px;
+    margin: 0 auto;
+    
+}
+.popUp form{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+.popUp form input{
+    text-align: center;
+}
+.popUp button{
+    align-self: center;
+    margin-bottom: 20px;
+}
+.mdpOublie{
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    margin-bottom: 10px ;
+    cursor: pointer;
+}
 
 /*PLAT DU JOUR*/
 .platDuJour{
@@ -255,13 +300,16 @@ section h2{
     display: block;
     width: 318px;
     height: 280px;
+    overflow: hidden;
     margin: 16px auto ;
 }
 .recetteTitle{
     display: block;
     color: #FFFFFF;
     text-align: center;
-    margin-top: -60px;
+    width: 300px;
+    height: 80px;
+    margin: -100px auto 0 auto;
     font-size: 24px ;
     filter: drop-shadow(5px 5px 2px #000000)
 }
@@ -269,29 +317,36 @@ section h2{
     display: flex;
     justify-content: space-between;
     text-align: right;
-    margin-top: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     margin-right: 16px;
     font-size: 24px ;
 }
 .etoiles {
-    display: inline-flex;
-    justify-content: center;
-    font-size: 3em;
+    background-image: url("Img/Etoiles.svg");
+    background-repeat: no-repeat;
     margin-left: 16px;
+    width: 196px;
+    height: 42px;
 }
-.etoile{
-    content: url(Img/etoile.png);
-    display: block;
-    width: 30px;
-    height: 30px;
+.zero{
+    background-position-y: -214px;
 }
-.grise{
-    content: url(Img/etoileGrise.png);
+.une{
+    background-position-y: -172px;
 }
+.deux{
+    background-position-y: -130px;
+}
+.trois{
+    background-position-y: -88px;
+}
+.quatre{
+    background-position-y: -46px;
+}
+
 /* VIGNETTE AJOUT*/
-/* .ajout{
-    background-color: rgba(0,0,0,0);
-} */
+
 .ajouter{
     display: block;
     text-align: center;
@@ -352,7 +407,40 @@ h3{
     margin-left: 80px;
 }
 
+/*PAGE INSCRIPTION*/
+.inscriptionContainer{
+    display: flex;
+    margin: 20px auto ;
+    flex-direction: column;
+    align-items: stretch center;
+    max-width: 450px;
+    text-align: center;
+}
+.inputInscription{
+    width: 90%;
+    margin-bottom: 15px; 
+}
+.inputInscription , .buttonInscription{
+    border: solid 1px lightgray;
+    border-radius: 20px;
+    padding-left: 10px;
+    background-color: #FFFFFF;
+    height: 50px;
+}
+.buttonInscription{
+    font-family: inherit;
+    width: 200px;
+    margin-top: 10px;
+}
 
+/*PAGE CONTACT*/
+.textContact{
+    width: 90%;
+    border: solid 1px lightgray;
+    border-radius: 20px;
+    padding-left: 10px;
+    background-color: #FFFFFF;
+}
 
 /*PIED DE PAGE*/
 footer{
@@ -494,6 +582,92 @@ form h2{
     margin: 30px;
 }
 
+/* PAGE GESTION*/
+.gestionContainer{
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    text-align: center;
+}
+.gestionContainer ul{
+    list-style: none;
+}
+.gestionRecette{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    background-color: #FFFFFF;
+    border: solid 1px lightgray;
+    border-radius: 20px;
+    padding: 0px 20px;
+    margin-bottom: 10px;
+}
+.gestionRecette a {
+    border: solid 1px lightgray;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/*LISTE DE COURSE */
+.listeContainer{
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    text-align: center;
+}
+.listePhotos{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.cardListe{
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    width: 150px;
+    height: 150px;
+    margin: 10px 20px;
+}
+.cardListe img{
+    display: block;
+    width: 150px;
+    height: 150px;
+}
+.cardListe button{
+    border: 0px;
+    background-color: inherit;
+    font-family: inherit;
+}
+.cardListe button:hover{
+    transform: scale(1.3);
+    transition: transform 0.3s;
+}
+.labelListe{
+    display: flex;
+    justify-content: space-evenly;
+}
+.listeExport{
+    border: solid 1px lightgray;
+    border-radius: 20px;
+    padding-left: 10px;
+    background-color: #FFFFFF;
+    height: 50px;
+    width: 60%;
+    margin: 10px auto;
+}
+
+
+
+
+
+
+
 /*VERSION MOBILE*/
 @media screen and (max-width: 670px) {
     /* BANNIERE VM*/
@@ -546,8 +720,9 @@ form h2{
         background-image: url(Img/logIn.svg);
         transform: translateX(-2px);
         background-repeat: no-repeat;
+        cursor: pointer;
     }
-   
+  
    /*  PLAT DU JOUR VM */
    .platDuJour{
     margin-top: 110px;
@@ -577,5 +752,32 @@ form h2{
     .menuBurger ul{
         border-right: solid 0px;
         border-bottom: solid 1px #000000;
+    }
+    /* INSCRIPTION ET CONTACT VM*/
+    .inscriptionContainer{
+        margin-top: 110px;
+    }
+    /* GESTION VM */
+    .gestionContainer{
+        margin-top: 110px;
+    }
+    /* LISTE VM*/
+    .listeContainer{
+        margin-top: 110px;
+    }
+    .listePhotos{
+        flex-direction: column;
+        align-content: center;
+    }
+    .cardListe{
+        width: 80%;
+        height: fit-content;
+    }
+    .cardListe img{
+        display: none;
+    }
+
+    .connexion {
+        top: -110px;
     }
 }
