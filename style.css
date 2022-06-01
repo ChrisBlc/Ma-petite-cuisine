@@ -469,12 +469,15 @@ footer a{
     margin-top: 10px;
 }
 .proTitre input{
-    width: 95%;
+    width: 90%;
     height: 40px;
     border-radius: 10px;
     padding-left: 20px;
     background-color: #FFFFFF ;
     border: 0px;
+}
+h2{
+    text-align: center;
 }
 form h2{
     margin-left: 5%;
@@ -485,35 +488,98 @@ form h2{
     border-radius: 10px;
     width: 350px;
     background-color: #FFFFFF;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.menuDeroulant{
+    border: solid 1px black ;
+    border-radius: 10px;
+    width: 350px;
+    background-color: #FFFFFF;
+    padding-left: 10px;
+    height: 50px;
 }
 .selections{
     display: flex;
     justify-content: space-around;
-    margin-top: 30px;
+    margin-top: 40px;
 }
-.selection1{
-    display: flex;
-    justify-content: space-around;
-    margin-top: 30px;
-}
-.temps1 label{
+.selectionTemps label{
     display: block;
     font: 1rem 'Fira Sans', sans-serif;
 }
-.temps1 input{
+.selectionTemps input{
     margin: .4rem 0;
 }
-.temps2 label{
+.selectionIngredient{
     display: block;
-    font: 1rem 'Fira Sans', sans-serif;
+    width: 90%;
+    height: 60%;
+    border-radius: 10px;
+    padding: 5px 0;
+    background-color: #FFFFFF ;
+    border: 0px;
+    margin: 30px auto;
+   
 }
-.temps2 input{
-    margin: .4rem 0;
-}
-.selection2{
+.ajoutingredient{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: 30px;
+    width: 90%;
+    margin: 30px auto;
+    flex-direction: row;
+}
+.selectionquantite{
+    border: solid 1px black ;
+    border-radius: 10px;
+    width: 350px;
+    background-color: #FFFFFF;
+    padding-left: 25px;
+    height: 50px;
+}
+.selectionAjouter{
+    border: solid 1px black ;
+    border-radius: 10px;
+    width: 150px;
+    background-color: #FFFFFF;
+    padding-left: 10px;
+    height: 40px;
+}
+.ingredientAjout{
+    display: flex;
+    width: 90%;
+    margin: 30px auto;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-self: flex-end;
+}
+.ajoutNouvelIngredient{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-self: flex-end; 
+}
+.listeIngredient{
+    padding: 0 50px;
+}
+.selectionAjouterEtape{
+    width: 90%;
+    margin: 30px auto;
+}
+.selectionAjouterEtape textarea{
+    border: solid 1px black ;
+    border-radius: 10px;
+    padding-top: 20px;
+    text-align: center;
+    display: flex;
+    margin: 10px auto;     
+}
+.validerRecette{
+    padding: 0 40%;
+    margin: 30px;
 }
 
 /* PAGE GESTION*/
@@ -602,10 +668,6 @@ form h2{
 
 
 
-
-
-
-
 /*VERSION MOBILE*/
 @media screen and (max-width: 670px) {
     /* BANNIERE VM*/
@@ -660,6 +722,7 @@ form h2{
         background-repeat: no-repeat;
         cursor: pointer;
     }
+  
    /*  PLAT DU JOUR VM */
    .platDuJour{
     margin-top: 110px;
