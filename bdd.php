@@ -1,5 +1,5 @@
 <?php 
-
+require_once('fonctions.php');
 $db = new PDO('mysql:host=localhost;dbname=ma_petite_cuisine;charset=utf8','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
 ));
@@ -47,4 +47,22 @@ function readCategorie($cnx,$cat,$nom, $id){
     else 
         return header('location:index.php');
 }
- 
+//  propositionRecette
+function readplat($cnx, $nomTable){
+    $sql = " SELECT * FROM $nomTable ";
+    $platCategorie = $cnx->query($sql);
+    return$platCategorie->fetchAll();
+}
+$couts = readplat($db, 'couts');
+function readIngredient($cnx){
+    $sql = " SELECT id_ingredients,nom_ingredient, id_unite FROM ingredients ";
+    $ingredients = $cnx->query($sql);
+    return$ingredients->fetchAll();
+}
+
+// function createRecette($cnx, $nomRecette, $tempsPreparation, $tempsCuisson, $validationAdmin, $datePublication, $idCout, $idDifficulte, $idUtilisateur){
+//     $r = "INSERT INTO recette(nomRecette, tempsPreparation, tempsCuisson, validationAdmin, datePublication, idCout, idDifficulte, idUtilisateur) VALUES (:nomRecette, :tempsPreparation, :tempsCuisson, :validationAdmin, :datePublication, :idCout, :idDifficulte, :idUtilisateur)";
+//     $req = $cnx->prepare($r);
+//     $valeurs = [':nomRecette'=>$nomRecette, ':tempsPreparation'=>$tempsPreparation, ':tempsCuisson'=>$tempsCuisson, ':validationAdmin'=>$validationAdmin, ':datePublication'=>$datePublication, ':idCout'=>$idCout, ':idDifficulte'=>$idDifficulte, ':idUtilisateur'=>$idUtilisateur];
+//     return $req->execute($valeurs);
+// }
