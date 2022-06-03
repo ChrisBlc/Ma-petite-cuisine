@@ -1,8 +1,9 @@
 <?php 
+
 $titrePage = "Page recette";
+
 require_once("banniere.php");
 ?>
-
     <div class="corpsPageRecette">
         <div class="bandeau">
             <div class="bandeauGauche">
@@ -11,7 +12,7 @@ require_once("banniere.php");
             </div>
             <div class="bandeauDroite">
                 <div class="etoilesRecette">
-                   
+
                 </div>
                 <h3 class="avis">82 avis</h3>
             </div>
@@ -24,12 +25,10 @@ require_once("banniere.php");
             <h2>Ingrédients</h2>
         </div>
         <div class="buttons">
-            <div class="nbrPersonnes">
-                <p><button class="plusEtMoins"> - </button> 4 personnes <button class="plusEtMoins"> + </button></p>
+            <div>
+                <button class="plusEtMoins"> - </button> 4 personnes <button class="plusEtMoins"> + </button>
             </div>
-            <div class="buttonCourses">
-                <button class="ajouterListe">Ajouter à ma liste</button>
-            </div>
+            <button class="ajouterListe">Ajouter à ma liste</button>
         </div>
         <div class="listIngredients">
             <div class="cardIngredients">
@@ -89,25 +88,38 @@ require_once("banniere.php");
         <div class='bandeau'>
             <h2>Etape 3 :</h2>
         </div>
-        <p class="pEtapes">Faire revenir la viande dans un peu d'huile, à feu très fort et très brièvement : la viande doit être saisie simplement, pour la garder tendre.</p>
+        <p class="pEtapes">Pour les vermicelles, faire bouillir une bonne casserole d'eau. Y plonger les vermicelles 3 à 4 mn. Egoutter et les ranger par poignée.</p>
         <div class='bandeau'>
             <h2>Etape 4 :</h2>
         </div>
-        <p class="pEtapes">Servir dans des grand bols de préférence : commencer par la batavia, le soja, puis 3 ou 4 poignées de vermicelles par personnes, 2 nems coupés petits morceaux par personne, la viande. Décorer avec la coriandre hachée, la menthe et quelques cacahuètes concassées (facultatif). Arroser de sauce et c'est prêt !</p>
-        <div class="buttonExporter">
-            <button class="exporter">Exporter en PDF</button></div>
+        <p class="pEtapes">Faire revenir la viande dans un peu d'huile, à feu très fort et très brièvement : la viande doit être saisie simplement, pour la garder tendre.</p>
+        <div class='bandeau'>
+            <h2>Etape 5 :</h2>
         </div>
+        <p class="pEtapes">Servir dans des grand bols de préférence : commencer par la batavia, le soja, puis 3 ou 4 poignées de vermicelles par personnes, 2 nems coupés petits morceaux par personne, la viande. Décorer avec la coriandre hachée, la menthe et quelques cacahuètes concassées (facultatif). Arroser de sauce et c'est prêt !</p>
+        <button id="exporter" class="buttonInscription centrer">Exporter en PDF</button>
         <div class="blockCommentaires">
-           <div class="bandeauRouge">
+            <div class="bandeauRouge">
                <h2>Commentaires :</h2>
-                <div class="commentairesRecette">
-                    <div class="usercommentaire">Alexandre 321</div>
-                    <div class="commentaire">Très bonne recette, merci !</div>
-                </div>
             </div>
+            <div class="commentairesRecette">
+                <div class="user">
+                    <h4>Alexandre 321</h4>
+                    <div class="etoiles"></div>
+                </div>
+                <p class="commentaire">Très bonne recette, merci !</p>
+            </div>
+            <div class="commentairesRecette ajoutCommentaire">
+                <h4>Pseudo</h4>
+                <form action="" method="POST">
+                    <div>
+                        <label for="note">Quelle note donnez vous?</label>
+                    <input required type="number" name="note" min="0" max="5"/></div>
+                    <textarea required name="avis" placeholder="votre commentaire ici"></textarea><br>
+                    <input type="submit" class="buttonInscription centrer"/>
+                </form>
+            </div>    
         </div>
     </div>
 </body>
-</html>
-
-<?php require_once("piedPage.php"); ?>
+<?php require_once("piedPage.php");?>
