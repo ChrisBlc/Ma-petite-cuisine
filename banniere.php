@@ -47,7 +47,7 @@
                         <li><a href="index.php?cat=categories&id=4">Dessert</a></li>
                     </ul>
                 <div class="recetteCard ajout">
-                    <a class="ajouter"  href="#">Ajouter une recette</a>
+                    <a class="ajouter"  href="propositionRecette.php">Ajouter une recette</a>
                 </div>
                 <div class="croix">X</div>
         </div>
@@ -60,7 +60,7 @@
             </form>
             <div class="mdpOublie">
                 <a  id="lienMdpRecup">Mot de passe oublié?</a>
-                <a href="">Pas de compte? S'inscrire</a>
+                <a href="inscription.php">Pas de compte? S'inscrire</a>
             </div>
             <div class="croix">X</div>
         </div>
@@ -71,7 +71,7 @@
                 <button class="buttonInscription" type="submit">Envoyer</button>
             </form>
             <div class="mdpOublie">
-                <a href="">Pas de compte? S'inscrire</a>
+                <a href="inscription.php">Pas de compte? S'inscrire</a>
             </div>
             <div class="croix">X</div>
         </div>
