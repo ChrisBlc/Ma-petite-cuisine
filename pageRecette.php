@@ -1,4 +1,5 @@
 <?php 
+$titrePage = "Page recette";
 require_once("banniere.php");
 ?>
 
@@ -10,11 +11,7 @@ require_once("banniere.php");
             </div>
             <div class="bandeauDroite">
                 <div class="etoilesRecette">
-                    <img src='Img/etoile.png' alt='etoile'>
-                    <img src='Img/etoile.png' alt='etoile'>
-                    <img src='Img/etoile.png' alt='etoile'>
-                    <img src='Img/etoile.png' alt='etoile'>
-                    <img src='Img/etoile.png' alt='etoile'> 
+                   
                 </div>
                 <h3 class="avis">82 avis</h3>
             </div>

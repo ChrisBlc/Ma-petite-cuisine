@@ -10,6 +10,13 @@ a{
     text-decoration: none;
     color: inherit;
 }
+button{
+    cursor: pointer;
+}
+button:hover{
+    transform: scale(1.2);
+    transition: transform 0.3s;
+}
 
 
 /* BANIERE */
@@ -542,7 +549,7 @@ h3{
 
 /*PIED DE PAGE*/
 footer{
-    background-image: url(Img/PhotoRecettes/eggs.jpg);
+    background-image: url(Img/eggs.jpg);
     background-size: cover;
     height: 70px ;
     display: flex;
