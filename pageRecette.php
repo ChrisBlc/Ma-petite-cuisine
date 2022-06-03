@@ -1,5 +1,7 @@
 <?php 
-$titrePage = "pageRecette";
+
+$titrePage = "Page recette";
+
 require_once("banniere.php");
 ?>
     <div class="corpsPageRecette">
