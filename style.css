@@ -14,7 +14,7 @@ button{
     cursor: pointer;
 }
 button:hover{
-    transform: scale(1.2);
+    transform: scale(1.1);
     transition: transform 0.3s;
 }
 
@@ -427,18 +427,16 @@ h3{
     display: flex;
     justify-content: space-between;
     width: 90%;
-    margin: 0 5%;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+}
+.ajouterListe{
     font-family: 'Carter One';
     font-size: 30px;
     border-radius: 10px;
     padding: 3px;
 }
-/*.ajouterListe{
-    font-family: 'Carter One';
-    font-size: 30px;
-    border-radius: 10px;
-    padding: 3px;
-}*/
 .listIngredients{
     display: flex;
     flex-wrap: wrap;
@@ -464,27 +462,17 @@ h3{
     font-family: Arial, Helvetica, sans-serif;
 
 }
-.buttonExporter{
-    display: block;
-    text-align: center;
-}
-.exporter{
-    font-family: 'Carter One';
+#exporter{
+    display:block;
+    margin: 0 auto;
     width: 30%;
-    font-size: 30px;
-    border-radius: 10px;
-    padding: 3px;
-    margin-bottom: 25px;
 }
 .blockCommentaires{
-    justify-content: space-between;
-    display:flex;
     width: 90%;
     height: auto;
     background: #F9E8D3;
     border-radius: 20px;
     margin: 10px auto;
-    align-items: center;
 }
 .bandeauRouge{
     justify-content: space-between;
@@ -496,21 +484,24 @@ h3{
     align-items: center;
     background-color: #F9B2B2;
 }
+.user{
+    display: flex;
+    align-items: center;
+}
 .commentairesRecette{
-    display: block;
-    width: auto;
+    display: flex;
     background-color: #FCD6D6;
     width: 90%;
     border-radius: 20px;
     margin: 10px auto;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 25px;
 }
+.ajoutCommentaire{
 
-
-
-
-
-
+}
 /*PAGE INSCRIPTION*/
 .inscriptionContainer{
     display: flex;
@@ -536,7 +527,16 @@ h3{
     width: 200px;
     margin-top: 10px;
 }
-
+.centrer{
+    margin-left: auto;
+    margin-right: auto;
+    justify-self: center;
+}
+.blockCommentaires form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
 /*PAGE CONTACT*/
 .textContact{
     width: 90%;
@@ -548,7 +548,7 @@ h3{
 
 /*PIED DE PAGE*/
 footer{
-    background-image: url(Img/PhotoRecettes/eggs.jpg);
+    background-image: url(Img/eggs.jpg);
     background-size: cover;
     height: 70px ;
     display: flex;

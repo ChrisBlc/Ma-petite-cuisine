@@ -34,8 +34,10 @@ else{
     $htmlTitre = "<h2>Tendance cette Saison</h2>";
 ?>
     <div class="platDuJour">
+        <a href="#">
         <img src="img/PhotoRecettes/Pates_au_pesto_de_coriandre.jpg" alt="Photo de pate au pesto de coriandre">
         <div class="label">Recettes du jour: Pates au pesto de coriandre </div>
+        <a>
     </div>
     
 <?php  }?>
