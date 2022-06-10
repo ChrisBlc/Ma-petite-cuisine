@@ -10,7 +10,9 @@ $categories = readCategorieRecette($db,$_GET['id']);
 $regimes =  readRegimeRecette($db,$_GET['id']);
 $saisons =  readSaisonRecette($db,$_GET['id']);
 $avis= readAvisRecette($db,$_GET['id']);
-var_dump($avis);
+$photos = readPhotosRecette($db,$_GET['id']);
+$ingredients = readIngredientsRecette($db,$_GET['id']);
+$etapes = readEtapesRecette($db,$_GET['id']);
 ?>
     <div class="corpsPageRecette">
         <div class="bandeau">
@@ -24,7 +26,7 @@ var_dump($avis);
         </div>
         <?php echo htmlDescriptionRecette($categories, $regimes, $saisons, $valeursTableRecette)?>
         <div class="divPhoto">
-            <img class="photoPrincipale" src="img/PhotoRecettes/bobun.jpeg" alt="Photo de Bo bun">
+            <img class="photoPrincipale" src="img/PhotoRecettes/<?php echo $photos[0]['nom_photo']?>" alt="Photo de<?php echo $photos[0]['nom_photo']?>">
         </div>
         <div class="bandeau">
             <h2>Ingrédients</h2>
@@ -36,72 +38,22 @@ var_dump($avis);
             <button class="ajouterListe">Ajouter à ma liste</button>
         </div>
         <div class="listIngredients">
-            <div class="cardIngredients">
-                <img src="img/PhotosIngredients/Boeuf.jpeg" alt="700g de boeuf tendre"/>
-                <p>700g de boeuf tendre</p>
-            </div>
-            <div class="cardIngredients">
-                <img src="img/PhotosIngredients/Curry.jpg" alt="1 CS de curry doux"/>
-                <p>1 CS de curry doux</p>
-            </div>
-            <div class="cardIngredients">
-                <img src="img/PhotosIngredients/Ail.jpg" alt="1 gousse d'ail"/>
-                <p>1 gousse d'ail</p>
-            </div>
-            <div class="cardIngredients">
-                <img src="img/PhotosIngredients/Sauce_huitre.jpeg" alt="3 CS de sauce d'huitre"/>
-                <p>3 CS de sauce d'huitre</p>
-            </div>
-            <div class="cardIngredients">
-                <img src="img/PhotosIngredients/Poivre.jpg" alt="Poivre"/>
-                <p>Poivre</p>
-            </div>
-            <div class="cardIngredients">
-                <img src="img/PhotosIngredients/Sel.jpg" alt="Sel"/>
-                <p>Sel</p>
-            </div>
-            <div class="cardIngredients">
-                <img src="img/PhotosIngredients/Coriandre.jpg" alt="Coriandre"/>
-                <p>Coriandre</p>
-            </div>
-            <div class="cardIngredients">
-                <img src="img/PhotosIngredients/Batavia.jpeg" alt="Batavia"/>
-                <p>Batavia</p>
-            </div>
-            <div class="cardIngredients">
-                <img src="img/PhotosIngredients/Menthe.jpeg" alt="Menthe"/>
-                <p>Menthe</p>
-            </div>
-            <div class="cardIngredients">
-                <img src="img/PhotosIngredients/Soja.jpeg" alt="300g de soja frais"/>
-                <p>300g de soja frais</p>
-            </div>
-            <div class="cardIngredients">
-                <img src="img/PhotosIngredients/Arachide.jpeg" alt="Arachide"/>
-                <p>Arachide</p>
-            </div>
+            <?php foreach($ingredients as $ingredient) {?>
+                <div class="cardIngredients">
+                    <img src="img/PhotosIngredients/<?php echo $ingredient['photo_ingredient']?>" alt="Photo de <?php echo $ingredient['nom_ingredient']?>"/>
+                    <p><?php echo $ingredient['Dosage'] .' '. $ingredient['nom_unite'] .' '. $ingredient['nom_ingredient']?></p>
+                </div>
+            <?php }?>
         </div>
-        <div class='bandeau'>
-            <h2>Etape 1 :</h2>
-        </div>
-        <p class="pEtapes">Cisailler la viande en tranches très fines, et faire mariner au frigo avec le curry, ail,
-             glutamate et les sauces, au moins 30 minutes.</p>
-        <div class='bandeau'>
-            <h2>Etape 2 :</h2>
-        </div>
-        <p class="pEtapes">Pendant ce temps préparer la sauce, si vous cuisinez souvent asiatique, doubler les proportions et conservez-là dans un bocal. Vous pouvez ajouter une pointe de piment (sauce chili) pour la parfumer. Faire bouillir tous les ingrédients et réserver.</p>
-        <div class='bandeau'>
-            <h2>Etape 3 :</h2>
-        </div>
-        <p class="pEtapes">Pour les vermicelles, faire bouillir une bonne casserole d'eau. Y plonger les vermicelles 3 à 4 mn. Egoutter et les ranger par poignée.</p>
-        <div class='bandeau'>
-            <h2>Etape 4 :</h2>
-        </div>
-        <p class="pEtapes">Faire revenir la viande dans un peu d'huile, à feu très fort et très brièvement : la viande doit être saisie simplement, pour la garder tendre.</p>
-        <div class='bandeau'>
-            <h2>Etape 5 :</h2>
-        </div>
-        <p class="pEtapes">Servir dans des grand bols de préférence : commencer par la batavia, le soja, puis 3 ou 4 poignées de vermicelles par personnes, 2 nems coupés petits morceaux par personne, la viande. Décorer avec la coriandre hachée, la menthe et quelques cacahuètes concassées (facultatif). Arroser de sauce et c'est prêt !</p>
+
+        <?php foreach($etapes as $cpt=> $etape) {?>
+            <div class='bandeau'>
+                <h2>Etape <?php echo $cpt+1 ?> :</h2>
+            </div>
+            <p class="pEtapes">
+            <?php echo $etape['desc_etape'] ?>
+            </p><?php }?>
+ 
         <button id="exporter" class="buttonInscription centrer">Exporter en PDF</button>
         <div class="blockCommentaires">
             <div class="bandeauRouge">
@@ -115,17 +67,21 @@ var_dump($avis);
                 </div>
                 <p class="commentaire"><?php echo $commentaire['desc_avis'] ?></p>
             </div>
+
+            <?php if(isset($_SESSION['connected'])){?>
+                <div class="commentairesRecette ajoutCommentaire">
+                    <h4>Pseudo</h4>
+                    <form action="ajoutAvis.php" method="POST">
+                        <input type='hidden' name='id_recette' value='<?php echo $_GET['id']?>'/>
+                        <div>
+                            <label for="note">Quelle note donnez vous?</label>
+                            <input required type="number" name="note" min="0" max="5"/>
+                        </div>
+                        <textarea required name="avis" placeholder="votre commentaire ici"></textarea><br>
+                        <input type="submit" class="buttonInscription centrer"/>
+                    </form>
+                </div>    
             <?php }?>
-            <div class="commentairesRecette ajoutCommentaire">
-                <h4>Pseudo</h4>
-                <form action="" method="POST">
-                    <div>
-                        <label for="note">Quelle note donnez vous?</label>
-                    <input required type="number" name="note" min="0" max="5"/></div>
-                    <textarea required name="avis" placeholder="votre commentaire ici"></textarea><br>
-                    <input type="submit" class="buttonInscription centrer"/>
-                </form>
-            </div>    
         </div>
     </div>
 </body>
