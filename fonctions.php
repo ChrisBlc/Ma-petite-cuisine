@@ -32,7 +32,6 @@ function moyenneNote($tableau){
             return 'quatre';
             break;
      }
-
  }
 
  function choixSaison(){
@@ -49,6 +48,7 @@ function moyenneNote($tableau){
         return 4;
     }
  }
+
  function htmlCheckBox($tableau, $cleId, $cleName){
     $html ='<div>';
     foreach($tableau as $valeur){
@@ -72,4 +72,17 @@ function moyenneNote($tableau){
         $html .='</select>';
         return $html;
     }
+
+
+
+ function afficherRecetteGestion($recettes){
+    $html = '<ul>';
+    foreach ($recettes as $recette){
+        $id = $recette['id_recette'];
+        $name = $recette['nom_recette'];
+        $html .=  "<li class='gestionRecette'><span>$name</span><a href='propositionRecette.php?id=$id'>Modifier</a></li>";
+    }
+    $html .= '</ul>';
+    return $html;
+ }
 

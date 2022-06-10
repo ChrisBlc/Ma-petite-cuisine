@@ -1,4 +1,10 @@
 <?php 
+session_start();
+$titrePage = 'Proposition recette';
+if ( !isset($_SESSION['connected'])) {
+    header('location: index.php?interdit=true');
+    exit();
+}
 require_once("banniere.php");
 require_once('bdd.php');
 require_once('fonctions.php');
@@ -10,13 +16,16 @@ $difficultes = readplat($db, 'difficultes');
 $ingredients = readIngredient($db);
  ?>
 
-  <form action="ajout.php" method="post" enctype="multipart/from-data">
+?>
+
+  <form action="ajoutRecette.php" method="post" enctype="multipart/from-data">
     <div class="proTitre">
-        <input type="text" name='titre' placeholder="comment s'appelle votre recette? (Max 60 caractères)">
+        <input type="text" name='nom_recette' laceholder="comment s'appelle votre recette? (Max 60 caractères)"/>
     </div>
     <div class="selections">
         <div class="selection">
             <h2>Type de plat :</h2>
+
            
             <?php echo htmlCheckBox($categories,'id_categorie','nom_categorie');?>
            
@@ -48,12 +57,14 @@ $ingredients = readIngredient($db);
     
         <div class="selectionIngredient">
             <div class="ajoutingredient">
+
             <?php echo htmlMenuRoulant($ingredients,'id_ingredients','nom_ingredient', 'ingredients');?>
             <input class="selectionquantite" type="number" name="quantite" id="unite" placeholder="Quantité d'ingredient" min="0" step="0.5">
             
                 <!-- AJOUTER NOM UNITE -->
             
                 <button class="selectionAjouter"  name="ajoutIngredient">Ajouter</button>
+
             </div>
                 <div class="ingredientAjout">
                     <div class="listeIngredient">
@@ -70,17 +81,19 @@ $ingredients = readIngredient($db);
                     </div>
                 </div>
             </div>
-    <div class="selectionAjouterEtape">
-        <textarea name="etape[]" placeholder="Etape1: Rentrez vous instructions" rows="5" cols="180"></textarea>
-        <textarea name="etape[]" placeholder="Etape2: Rentrez vous instructions" rows="5" cols="180"></textarea>
-        <div class="etapes"><a class="ajouter ajoutEtape"  href="#">Ajouter une etape</a></div>
+
+    <div class="selectionAjouterEtape" class='etapes' >
+        <textarea name="etapes[]" placeholder="Etape1: Rentrez vous instructions" rows="5" cols="180"></textarea>
+        <textarea name="etapes[]" placeholder="Etape2: Rentrez vous instructions" rows="5" cols="180"></textarea>
+        <div class="etapes" id='divetape'><div class="ajouter ajoutEtape"  id='ajouterEtape'>Ajouter une etape</div></div>
+
     </div>
     <div class="selectionAjouterEtape">
         <input id='ajoutPhoto' class="etapes" type="file" name="photoRecette"/>
     </div>
         
      <div class="validerRecette">
-        <button class="selectionAjouter" type="submit" name="valider">Valider la recette</button>
+        <button class="selectionAjouter" type="submit" name="valider">Proposer la recette</button>
      </div>
 </form>
 

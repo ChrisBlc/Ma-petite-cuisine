@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 $titrePage = "Page recette";
 
 require_once("banniere.php");

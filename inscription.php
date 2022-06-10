@@ -1,4 +1,5 @@
 <?php 
+session_start();
 $titrePage = 'Inscription';
 require_once("banniere.php");
 ?>
