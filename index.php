@@ -1,8 +1,12 @@
 <?php 
+session_start();
 $titrePage = 'Ma petite Cuisine';
 require_once("bdd.php");
 require_once("fonctions.php");
 require_once("banniere.php");
+if (isset($_GET['interdit'])){
+    echo "<script>alert('Cette page est reservé aux personnes identifiés')</script>";
+}
 if (isset($_GET['cat'])){
     $cat = $_GET['cat'];
     $id = $_GET['id'];
@@ -42,10 +46,10 @@ else{
     
 <?php  }?>
     <section>
-        <?php echo $htmlTitre;?>
+    <?php echo $htmlTitre;?>
         <div class="recetteContainer">
+      
             <?php
-           
             foreach( $recettes as $k => $recette){ 
                 $nomRecette = $recette['nom_recette'];
                 $idRecette = $recette['id_recette'];
@@ -68,7 +72,7 @@ else{
             </div>  
              <?php }?>
              <div class="recetteCard ajout">
-                <a class="ajouter"  href="#">Ajouter une recette</a>
+                <a class="ajouter"  href="propositionRecette.php">Ajouter une recette</a>
             </div>
         </div>
     </section>
