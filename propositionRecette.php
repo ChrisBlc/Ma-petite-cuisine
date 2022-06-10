@@ -16,7 +16,7 @@ $difficultes = readplat($db, 'difficultes');
 $ingredients = readIngredient($db);
  ?>
 
-?>
+
 
   <form action="ajoutRecette.php" method="post" enctype="multipart/from-data">
     <div class="proTitre">

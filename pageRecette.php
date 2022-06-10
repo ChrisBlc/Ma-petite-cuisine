@@ -9,6 +9,8 @@ $valeursTableRecette = readValeurRecette($db,$_GET['id']);
 $categories = readCategorieRecette($db,$_GET['id']);
 $regimes =  readRegimeRecette($db,$_GET['id']);
 $saisons =  readSaisonRecette($db,$_GET['id']);
+$avis= readAvisRecette($db,$_GET['id']);
+var_dump($avis);
 ?>
     <div class="corpsPageRecette">
         <div class="bandeau">
@@ -105,13 +107,15 @@ $saisons =  readSaisonRecette($db,$_GET['id']);
             <div class="bandeauRouge">
                <h2>Commentaires :</h2>
             </div>
-            <div class="commentairesRecette">
+            <?php foreach($avis as $commentaire){ ?>
+              <div class="commentairesRecette">
                 <div class="user">
-                    <h4>Alexandre 321</h4>
+                    <h4><?php echo $commentaire['pseudo_utilisateur'] ?></h4>
                     <div class="etoiles"></div>
                 </div>
-                <p class="commentaire">Très bonne recette, merci !</p>
+                <p class="commentaire"><?php echo $commentaire['desc_avis'] ?></p>
             </div>
+            <?php }?>
             <div class="commentairesRecette ajoutCommentaire">
                 <h4>Pseudo</h4>
                 <form action="" method="POST">

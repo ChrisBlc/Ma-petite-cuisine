@@ -52,7 +52,7 @@ function readCategorie($cnx,$cat,$nom, $id){
 
 
 function readValeurRecette($cnx,$id_recette){
-    $sql1 = "SELECT nom_recette,pseudo_utilisateur, temps_preparation, temps_cuisson, validation_admin, indice_cout, indice_difficulte FROM `recettes` LEFT JOIN utilisateurs ON recettes.id_utilisateur = utilisateurs.id_utilisateur LEFT JOIN couts ON recettes.id_cout = couts.id_cout LEFT JOIN difficultes ON recettes.id_difficulte = difficultes.id_difficulte WHERE id_recette = :id_recette";
+    $sql1 = "SELECT nom_recette,pseudo_utilisateur, temps_preparation, temps_cuisson, validation_admin, nom_cout, nom_difficulte FROM `recettes` LEFT JOIN utilisateurs ON recettes.id_utilisateur = utilisateurs.id_utilisateur LEFT JOIN couts ON recettes.id_cout = couts.id_cout LEFT JOIN difficultes ON recettes.id_difficulte = difficultes.id_difficulte WHERE id_recette = :id_recette";
     $valeurs = $cnx->prepare($sql1);
     $id = [':id_recette'=>$id_recette];
     $valeurs->execute($id);
@@ -63,13 +63,13 @@ function readValeurRecette($cnx,$id_recette){
 // echo htmlBandeau($bandeauGauche);
 
 function readCategorieRecette($cnx,$id_recette){
-    $sql2 = "SELECT indice_cat FROM `categories` LEFT JOIN recettes_categories ON recettes_categories.id_categorie = categories.id_categorie WHERE id_recette = :id_recette";
+    $sql2 = "SELECT nom_categorie FROM `categories` LEFT JOIN recettes_categories ON recettes_categories.id_categorie = categories.id_categorie WHERE id_recette = :id_recette";
     $valeurs = $cnx->prepare($sql2);
     $id = [':id_recette'=>$id_recette];
     $valeurs->execute($id);
     return $valeurs->fetchAll();
 }
-var_dump(readCategorieRecette($db,1));
+// var_dump(readCategorieRecette($db,1));
 
 function readRegimeRecette($cnx,$id_recette){
     $sql3 = "SELECT nom_regime FROM `regimes` LEFT JOIN recettes_regimes ON recettes_regimes.id_regime = regimes.id_regime WHERE id_recette = :id_recette";
@@ -78,7 +78,7 @@ function readRegimeRecette($cnx,$id_recette){
     $valeurs->execute($id);
     return $valeurs->fetchAll();
 }
-var_dump (readRegimeRecette($db,1));
+// var_dump (readRegimeRecette($db,1));
 
 function readSaisonRecette($cnx,$id_recette){
     $sql4 = "SELECT nom_saison FROM `saisons` LEFT JOIN recettes_saisons ON recettes_saisons.id_saison = saisons.id_saison WHERE id_recette=:id_recette";
@@ -87,10 +87,10 @@ function readSaisonRecette($cnx,$id_recette){
     $valeurs->execute($id);
     return $valeurs->fetchAll();
 }
-var_dump (readSaisonRecette($db,1));
+// var_dump (readSaisonRecette($db,1));
 
 function readAvisRecette($cnx,$id_recette){
-    $sql5 = "SELECT desc_avis, indice_note, pseudo_utilisateur FROM `avis` LEFT JOIN utilisateurs ON utilisateurs.id_utilisateur = avis.id_utilisateur WHERE id_recette=1";
+    $sql5 = "SELECT desc_avis, indice_note, pseudo_utilisateur FROM `avis` LEFT JOIN utilisateurs ON utilisateurs.id_utilisateur = avis.id_utilisateur WHERE id_recette=:id_recette";
     $valeurs = $cnx->prepare($sql5);
     $id = [':id_recette'=>$id_recette];
     $valeurs->execute($id);
@@ -108,7 +108,7 @@ function readPhotosRecette($cnx,$id_recette){
 // var_dump(readPhotosRecette($db,1));
 
 function readIngredientsRecette($cnx,$id_recette){
-    $sql7 = "SELECT nom_ingredient, photo_ingredients FROM `ingredients` LEFT JOIN recettes_ingredients ON recettes_ingredients.id_ingredients = ingredients.id_ingredients WHERE id_recette=1";
+    $sql7 = "SELECT nom_ingredient, photo_ingredient FROM `ingredients` LEFT JOIN recettes_ingredients ON recettes_ingredients.id_ingredient = ingredients.id_ingredient WHERE id_recette=1";
     $valeurs = $cnx->prepare($sql7);
     $id = [':id_recette'=>$id_recette];
     $valeurs->execute($id);
@@ -133,7 +133,7 @@ function readplat($cnx, $nomTable){
 }
 $couts = readplat($db, 'couts');
 function readIngredient($cnx){
-    $sql = " SELECT id_ingredients,nom_ingredient, id_unite FROM ingredients ";
+    $sql = " SELECT id_ingredient,nom_ingredient, id_unite FROM ingredients ";
     $ingredients = $cnx->query($sql);
     return$ingredients->fetchAll();
 }
@@ -277,6 +277,13 @@ function createRecette($cnx, $donnees , $idUser){
         ];
         $req->execute($photos);
     }
+}
+// create utilisateur
+function createUtilisateur($cnx, $nom, $prenom, $mail, $mdp, $pseudo){
+    $r = "INSERT INTO utilisateurs(nom_utilisateur, prenom_utilisateur, mail_utilisateur, mdp_utilisateur, pseudo_utilisateur) VALUES (:nom, :prenom, :mail, :mdp, :pseudo)";
+    $req = $cnx->prepare($r);
+    $valeurs = [':nom'=>$nom, ':prenom'=>$prenom, ':mail'=>$mail, ':mdp'=>$mdp, ':pseudo'=>$pseudo];
+    $req->execute($valeurs);
 }
 
 
