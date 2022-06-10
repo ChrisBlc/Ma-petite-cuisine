@@ -61,11 +61,11 @@ function moyenneNote($tableau){
  }
 
  function htmlDescriptionRecette($categories, $regimes, $saisons, $valeurRecette){
-    $difficulte = $valeurRecette[0]['indice_difficulte'];
-    $couts = $valeurRecette[0]['indice_cout'];
+    $difficulte = $valeurRecette[0]['nom_difficulte'];
+    $couts = $valeurRecette[0]['nom_cout'];
     $html = "<h3 class='h3Bandeau'> $difficulte | $couts | ";
     foreach($categories as $categorie){
-        $categorie = $categorie['indice_cat'];
+        $categorie = $categorie['nom_categorie'];
         $html .= "| $categorie ";
     }
     foreach($regimes as $regime){

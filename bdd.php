@@ -52,7 +52,11 @@ function readCategorie($cnx,$cat,$nom, $id){
 
 
 function readValeurRecette($cnx,$id_recette){
-    $sql1 = "SELECT nom_recette,pseudo_utilisateur, temps_preparation, temps_cuisson, validation_admin, indice_cout, indice_difficulte FROM `recettes` LEFT JOIN utilisateurs ON recettes.id_utilisateur = utilisateurs.id_utilisateur LEFT JOIN couts ON recettes.id_cout = couts.id_cout LEFT JOIN difficultes ON recettes.id_difficulte = difficultes.id_difficulte WHERE id_recette = :id_recette";
+    $sql1 = "SELECT nom_recette,pseudo_utilisateur, temps_preparation, temps_cuisson, validation_admin, nom_cout, nom_difficulte FROM `recettes`
+    LEFT JOIN utilisateurs ON recettes.id_utilisateur = utilisateurs.id_utilisateur
+    LEFT JOIN couts ON recettes.id_cout = couts.id_cout
+    LEFT JOIN difficultes ON recettes.id_difficulte = difficultes.id_difficulte
+    WHERE id_recette = :id_recette";
     $valeurs = $cnx->prepare($sql1);
     $id = [':id_recette'=>$id_recette];
     $valeurs->execute($id);
@@ -63,34 +67,42 @@ function readValeurRecette($cnx,$id_recette){
 // echo htmlBandeau($bandeauGauche);
 
 function readCategorieRecette($cnx,$id_recette){
-    $sql2 = "SELECT indice_cat FROM `categories` LEFT JOIN recettes_categories ON recettes_categories.id_categorie = categories.id_categorie WHERE id_recette = :id_recette";
+    $sql2 = "SELECT nom_categorie FROM `categories`
+    LEFT JOIN recettes_categories ON recettes_categories.id_categorie = categories.id_categorie
+    WHERE id_recette = :id_recette";
     $valeurs = $cnx->prepare($sql2);
     $id = [':id_recette'=>$id_recette];
     $valeurs->execute($id);
     return $valeurs->fetchAll();
 }
-var_dump(readCategorieRecette($db,1));
+//var_dump(readCategorieRecette($db,1));
 
 function readRegimeRecette($cnx,$id_recette){
-    $sql3 = "SELECT nom_regime FROM `regimes` LEFT JOIN recettes_regimes ON recettes_regimes.id_regime = regimes.id_regime WHERE id_recette = :id_recette";
+    $sql3 = "SELECT nom_regime FROM `regimes`
+    LEFT JOIN recettes_regimes ON recettes_regimes.id_regime = regimes.id_regime
+    WHERE id_recette = :id_recette";
     $valeurs = $cnx->prepare($sql3);
     $id = [':id_recette'=>$id_recette];
     $valeurs->execute($id);
     return $valeurs->fetchAll();
 }
-var_dump (readRegimeRecette($db,1));
+//var_dump (readRegimeRecette($db,1));
 
 function readSaisonRecette($cnx,$id_recette){
-    $sql4 = "SELECT nom_saison FROM `saisons` LEFT JOIN recettes_saisons ON recettes_saisons.id_saison = saisons.id_saison WHERE id_recette=:id_recette";
+    $sql4 = "SELECT nom_saison FROM `saisons`
+    LEFT JOIN recettes_saisons ON recettes_saisons.id_saison = saisons.id_saison
+    WHERE id_recette=:id_recette";
     $valeurs = $cnx->prepare($sql4);
     $id = [':id_recette'=>$id_recette];
     $valeurs->execute($id);
     return $valeurs->fetchAll();
 }
-var_dump (readSaisonRecette($db,1));
+//var_dump (readSaisonRecette($db,1));
 
 function readAvisRecette($cnx,$id_recette){
-    $sql5 = "SELECT desc_avis, indice_note, pseudo_utilisateur FROM `avis` LEFT JOIN utilisateurs ON utilisateurs.id_utilisateur = avis.id_utilisateur WHERE id_recette=1";
+    $sql5 = "SELECT desc_avis, indice_note, pseudo_utilisateur
+    FROM `avis` LEFT JOIN utilisateurs ON utilisateurs.id_utilisateur = avis.id_utilisateur
+    WHERE id_recette=1";
     $valeurs = $cnx->prepare($sql5);
     $id = [':id_recette'=>$id_recette];
     $valeurs->execute($id);
@@ -99,7 +111,8 @@ function readAvisRecette($cnx,$id_recette){
 // var_dump (readAvisRecette($db,1));
 
 function readPhotosRecette($cnx,$id_recette){
-    $sql6 = "SELECT nom_photo FROM `photos` WHERE id_recette=1";
+    $sql6 = "SELECT nom_photo FROM `photos`
+    WHERE id_recette=:id_recette";
     $valeurs = $cnx->prepare($sql6);
     $id = [':id_recette'=>$id_recette];
     $valeurs->execute($id);
@@ -108,7 +121,10 @@ function readPhotosRecette($cnx,$id_recette){
 // var_dump(readPhotosRecette($db,1));
 
 function readIngredientsRecette($cnx,$id_recette){
-    $sql7 = "SELECT nom_ingredient, photo_ingredients FROM `ingredients` LEFT JOIN recettes_ingredients ON recettes_ingredients.id_ingredients = ingredients.id_ingredients WHERE id_recette=1";
+    $sql7 = "SELECT nom_ingredient, photo_ingredient, Dosage, nom_unite FROM `ingredients`
+    LEFT JOIN recettes_ingredients ON recettes_ingredients.id_ingredient = ingredients.id_ingredient
+    LEFT JOIN unites ON ingredients.id_unite =  unites.id_unite
+    WHERE id_recette=:id_recette";
     $valeurs = $cnx->prepare($sql7);
     $id = [':id_recette'=>$id_recette];
     $valeurs->execute($id);
@@ -117,7 +133,8 @@ function readIngredientsRecette($cnx,$id_recette){
 // var_dump(readIngredientsRecette($db,1));
 
 function readEtapesRecette($cnx,$id_recette){
-    $sql8 = "SELECT desc_etape FROM `etapes` LEFT JOIN recettes_etapes ON etapes.id_etape = recettes_etapes.id_etape WHERE id_recette = 1";
+    $sql8 = "SELECT desc_etape FROM `etapes` 
+    WHERE id_recette = :id_recette";
     $valeurs = $cnx->prepare($sql8);
     $id = [':id_recette'=>$id_recette];
     $valeurs->execute($id);
@@ -133,7 +150,7 @@ function readplat($cnx, $nomTable){
 }
 $couts = readplat($db, 'couts');
 function readIngredient($cnx){
-    $sql = " SELECT id_ingredients,nom_ingredient, id_unite FROM ingredients ";
+    $sql = " SELECT id_ingredient,nom_ingredient, id_unite FROM ingredients ";
     $ingredients = $cnx->query($sql);
     return$ingredients->fetchAll();
 }
