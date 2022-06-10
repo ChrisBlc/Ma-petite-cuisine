@@ -16,7 +16,6 @@ $difficultes = readplat($db, 'difficultes');
 $ingredients = readIngredient($db);
  ?>
 
-
   <form action="ajoutRecette.php" method="post" enctype="multipart/form-data">
     <div class="proTitre">
         <input required type="text" name='nom_recette' placeholder="Comment s'appelle votre recette? (Max 60 caractères)"/>

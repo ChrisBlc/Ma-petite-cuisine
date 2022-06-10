@@ -9,12 +9,10 @@ $valeursTableRecette = readValeurRecette($db,$_GET['id']);
 $categories = readCategorieRecette($db,$_GET['id']);
 $regimes =  readRegimeRecette($db,$_GET['id']);
 $saisons =  readSaisonRecette($db,$_GET['id']);
+$avis= readAvisRecette($db,$_GET['id']);
 $photos = readPhotosRecette($db,$_GET['id']);
 $ingredients = readIngredientsRecette($db,$_GET['id']);
 $etapes = readEtapesRecette($db,$_GET['id']);
-//var_dump($photos[0]['nom_photo']);
-//var_dump($ingredients);
-var_dump($etapes);
 ?>
     <div class="corpsPageRecette">
         <div class="bandeau">
@@ -61,13 +59,15 @@ var_dump($etapes);
             <div class="bandeauRouge">
                <h2>Commentaires :</h2>
             </div>
-            <div class="commentairesRecette">
+            <?php foreach($avis as $commentaire){ ?>
+              <div class="commentairesRecette">
                 <div class="user">
-                    <h4>Alexandre 321</h4>
+                    <h4><?php echo $commentaire['pseudo_utilisateur'] ?></h4>
                     <div class="etoiles"></div>
                 </div>
-                <p class="commentaire">Très bonne recette, merci !</p>
+                <p class="commentaire"><?php echo $commentaire['desc_avis'] ?></p>
             </div>
+
             <?php if(isset($_SESSION['connected'])){?>
                 <div class="commentairesRecette ajoutCommentaire">
                     <h4>Pseudo</h4>
