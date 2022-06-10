@@ -1,47 +1,54 @@
 <?php 
-require_once("banniere.php");?>
+session_start();
+$titrePage = 'Proposition recette';
+if ( !isset($_SESSION['connected'])) {
+    header('location: index.php?interdit=true');
+    exit();
+}
+require_once("banniere.php");
+?>
 
-  <form action="#" method="post" enctype="multipart/from-data">
+  <form action="ajoutRecette.php" method="post" enctype="multipart/from-data">
     <div class="proTitre">
-        <input type="text" placeholder="comment s'appelle votre recette? (Max 60 caractères)">
+        <input type="text" name='nom_recette' laceholder="comment s'appelle votre recette? (Max 60 caractères)">
     </div>
     <div class="selections">
         <div class="selection">
             <h2>Type de plat :</h2>
             <div>
-                <input type="checkbox" name="categorie" id="aperitif" value="1">
+                <input type="checkbox" name="categorie[]" id="aperitif" value="1">
                     <label for="aperitif">Apéritif</label><br>
-                <input type="checkbox" name="categorie" id="entree" value="2">
+                <input type="checkbox" name="categorie[]" id="entree" value="2">
                     <label for="entree">Entrée</label><br>
-                <input type="checkbox" name="categorie" id="plat" value="3">
+                <input type="checkbox" name="categorie[]" id="plat" value="3">
                     <label for="plat">Plat</label><br>
-                <input type="checkbox" name="categorie" id="dessert" value="4">
+                <input type="checkbox" name="categorie[]" id="dessert" value="4">
                     <label for="dessert">Dessert</label>
             </div>
         </div>
         <div class="selection">
             <h2>Saison du plat :</h2>
             <div>
-                <input type="checkbox" name="saison" id="printemps" value="1">
+                <input type="checkbox" name="saison[]" id="printemps" value="1">
                     <label for="printemps">Printemps</label><br>
-                <input type="checkbox" name="saison" id="ete" value="2">
+                <input type="checkbox" name="saison[]" id="ete" value="2">
                     <label for="ete">Eté</label><br>
-                <input type="checkbox" name="saison" id="automne" value="3">
+                <input type="checkbox" name="saison[]" id="automne" value="3">
                     <label for="automne">Automne</label><br>
-                <input type="checkbox" name="saison" id="hiver" value="4">
+                <input type="checkbox" name="saison[]" id="hiver" value="4">
                     <label for="hiver">Hiver</label>
             </div>
         </div>
             <div class="selection">
                 <h2>Régime :</h2>
                 <div>
-                    <input type="checkbox" name="regime" id="vegetarien" value="1">
+                <input type="checkbox" name="regime[]" id="vegetarien" value="1">
                         <label for="vegetarien">Végétarien</label><br>
-                    <input type="checkbox" name="regime" id="vegan" value="2">
+                    <input type="checkbox" name="regime[]" id="vegan" value="2">
                         <label for="vegan">Végan</label><br>
-                    <input type="checkbox" name="regime" id="sansPorc" value="3">
+                    <input type="checkbox" name="regime[]" id="sansPorc" value="3">
                         <label for="sansPorc">Sans porc</label><br>
-                    <input type="checkbox" name="regime" id="sansGluten" value="4">
+                    <input type="checkbox" name="regime[]" id="sansGluten" value="4">
                         <label for="sansGluten">Sans gluten</label>
                 </div>
             </div>
@@ -75,15 +82,15 @@ require_once("banniere.php");?>
     
         <div class="selectionIngredient">
             <div class="ajoutingredient">
-                <select class="menuDeroulant" name="ingredient" id="ingred">
+                <select class="menuDeroulant"  id="ingred">
                     <option value="">--choisir un ingredient--</option>
                     <option value="2">tomate</option>
                     <option value="334">huile d'olive</option>
                     <option value="34">mozarella</option>
                     <option value="4343">Basilic</option>
-                </select>
-                <input class="selectionquantite" type="number" name="quantite" id="unite" placeholder="Quantité d'ingredient" min="0" step="0.5">
-                <button class="selectionAjouter"  name="ajoutIngredient">Ajouter</button>
+                </sele'ct>
+                <input class="selectionquantite" type="number"  id="quantite" placeholder="Quantité d'ingredient" min="0" step="0.5">
+                <button class="selectionAjouter" id='ajoutIngredient' name="ajoutIngredient">Ajouter</button>
             </div>
                 <div class="ingredientAjout">
                     <div class="listeIngredient">
@@ -100,17 +107,17 @@ require_once("banniere.php");?>
                     </div>
                 </div>
             </div>
-    <div class="selectionAjouterEtape">
-        <textarea name="etape1" placeholder="Etape1: Rentrez vous instructions" rows="5" cols="180"></textarea>
-        <textarea name="etape2" placeholder="Etape2: Rentrez vous instructions" rows="5" cols="180"></textarea>
-        <div class="etapes"><a class="ajouter ajoutEtape"  href="#">Ajouter une etape</a></div>
+    <div class="selectionAjouterEtape" class='etapes' >
+        <textarea name="etapes[]" placeholder="Etape1: Rentrez vous instructions" rows="5" cols="180"></textarea>
+        <textarea name="etapes[]" placeholder="Etape2: Rentrez vous instructions" rows="5" cols="180"></textarea>
+        <div class="etapes" id='divetape'><div class="ajouter ajoutEtape"  id='ajouterEtape'>Ajouter une etape</div></div>
     </div>
     <div class="selectionAjouterEtape">
         <input id='ajoutPhoto' class="etapes" type="file" name="photoRecette"/>
     </div>
         
      <div class="validerRecette">
-        <button class="selectionAjouter" type="submit" name="valider">Valider la recette</button>
+        <button class="selectionAjouter" type="submit" name="valider">Proposer la recette</button>
      </div>
 </form>
 

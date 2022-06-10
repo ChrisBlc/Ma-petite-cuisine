@@ -1,9 +1,10 @@
 <?php 
+require_once('fonctions.php');
 
 $db = new PDO('mysql:host=localhost;dbname=ma_petite_cuisine;charset=utf8','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
 ));
-
+/*=================================LECTURE=======================================================================*/
 function readInfosRecettesByCat($db, $cat, $idCat){
     switch ($cat){
         case 'saisons':
@@ -47,4 +48,136 @@ function readCategorie($cnx,$cat,$nom, $id){
     else 
         return header('location:index.php');
 }
- 
+
+function readRecettesByUser($cnx, $idUser){
+    $r = "SELECT id_recette, nom_recette FROM recettes WHERE id_utilisateur = :idUser";
+    $recettes = $cnx->prepare($r);
+    $recettes->execute([':idUser' => $idUser]);
+    return $recettes->fetchAll();
+}
+
+function readRecetteAValider($cnx){
+    $r = "SELECT id_recette, nom_recette FROM recettes WHERE validation_admin = 0";
+    $valider = $cnx->query($r);
+    return $valider->fetchAll();
+}
+
+function readMdpIDAdmin($cnx){
+    $r = "SELECT id_utilisateur,mail_utilisateur,mdp_utilisateur,admin FROM `utilisateurs`";
+    $infoUser = $cnx->query($r);
+    return $infoUser->fetchAll();
+}
+function readInfosMultiplesById($cnx,array $nomsInfos, $tableInfo, $idRecette){
+    $nomsInfos = implode(',',$nomsInfos);
+    $r = "SELECT $nomsInfos FROM $tableInfo WHERE id_recette = :idRecette";
+    $infosMulti = $cnx->prepare($r);
+    $infosMulti->execute([':idRecette' => $idRecette]);
+    return $infosMulti->fetchAll();
+}
+function readAllInfoRecetteById($cnx, $idRecette){
+    $r = "SELECT * FROM recettes WHERE id_recette = :idRecette";
+    $recettes = $cnx->prepare($r);
+    $recettes->execute([':idRecette' => $idRecette]);
+    $allinfos['infosUniques'] = $recettes->fetchAll();
+    $allinfos['categories'] = readInfosMultiplesById($cnx,['id_categorie'],'recettes_categories', $idRecette);
+    $allinfos['saisons'] = readInfosMultiplesById($cnx,['id_saison'],'recettes_saisons', $idRecette);
+    $allinfos['regimes'] = readInfosMultiplesById($cnx,['id_regime'],'recettes_regimes', $idRecette);
+    $allinfos['etapes'] = readInfosMultiplesById($cnx,['desc_etape'],'etapes', $idRecette);
+    $allinfos['photos'] = readInfosMultiplesById($cnx,['nom_photo'],'photos', $idRecette);
+    return $allinfos;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*=================================AJOUT=======================================================================*/
+function createRecette($cnx, $donnees , $idUser){
+    if (in_array('2', $donnees['regime'])){
+        $donnees['regime'][] = 3;
+        $donnees['regime'][] = 1;
+    }
+    if (in_array('1', $donnees['regime'])){
+        $donnees['regimes'][] = 3;
+    }
+    
+
+    $r = "INSERT INTO recettes(nom_recette, temps_preparation, temps_cuisson, validation_admin, date_publication, id_cout, id_difficulte, id_utilisateur)  VALUES (:nom_recette,:tempsPrep,:tempsCui, 0,".date("Y-m-d").",:cout, :difficulte, :idUser)";
+    $req= $cnx->prepare($r);
+    $valeurTableRecette = [
+        ':nom_recette' => $donnees['nom_recette'],
+        ':tempsPrep' => $donnees['tempsPrep'],
+        ':tempsCui' => $donnees['tempsCui'],
+        ':cout' => $donnees['cout'],
+        ':difficulte' => $donnees['difficulte'],
+        ':idUser' => $idUser
+    ];
+    $req->execute($valeurTableRecette);
+    /* Ajout dans les tables de liaisons*/
+    $idRecette = $cnx->lastInsertId();
+    for($i=0; $i < count($donnees['ingredients']); $i++ ){
+        $r = "INSERT INTO recettes_ingredients VALUES (:idRecette,:id_ingredient, :Dosage )";
+        $req = $cnx->prepare($r);
+        $ingredients = [
+            ':idRecette' => $idRecette,
+            ':id_ingredient' => $donnees['ingredients']['id'][$i],
+            ':Dosage' => ($donnees['ingredients']['quantite'][$i])/$donnees['parts']
+        ];
+        $req->execute($ingredients);
+    }
+    for($i=0; $i < count($donnees['categorie']); $i++ ){
+        $r = "INSERT INTO recettes_categories VALUES (:idRecette,:id_categorie)";
+        $req = $cnx->prepare($r);
+        $categories = [
+            ':idRecette' => $idRecette,
+            ':id_categorie' => $donnees['categorie'][$i]
+        ];
+        $req->execute($categories);
+    }
+    for($i=0; $i < count($donnees['saison']); $i++ ){
+        $r = "INSERT INTO recettes_saisons VALUES (:idRecette,:id_saison)";
+        $req = $cnx->prepare($r);
+        $categories = [
+            ':idRecette' => $idRecette,
+            ':id_saison' => $donnees['saison'][$i]
+        ];
+        $req->execute($categories);
+    }
+    for($i=0; $i < count($donnees['regime']); $i++ ){
+        $r = "INSERT INTO recettes_regimes VALUES (:idRecette,:id_regime)";
+        $req = $cnx->prepare($r);
+        $categories = [
+            ':idRecette' => $idRecette,
+            ':id_regime' => $donnees['regime'][$i]
+        ];
+        $req->execute($categories);
+    }
+    /*ajout des étapes*/
+    foreach ($donnees['etapes'] as $etape){
+        $r = "INSERT INTO etapes(desc_etape , id_recette) VALUES (:desc_etape, :idRecette)";
+        $req = $cnx->prepare($r);
+        $etapes = [
+            ':desc_etape' => $etape,
+            ':idRecette' => $idRecette
+        ];
+        $req->execute($etapes);
+    }
+    /* ajout photo */
+    foreach ($donnees['photoRecette'] as $photo){
+        $r = "INSERT INTO photos(nom_photo , id_recette) VALUES (:nom_photo, :idRecette)";
+        $req = $cnx->prepare($r);
+        $photos = [
+            ':nom_photo' => $photo,
+            ':idRecette' => $idRecette
+        ];
+        $req->execute($photos);
+    }
+}

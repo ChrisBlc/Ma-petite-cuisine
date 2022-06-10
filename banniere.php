@@ -11,9 +11,16 @@
 <body>
     <header>
         <nav class="navHeader">
-            <a class="gerer" href="gestion.php">Gérer</a>
-            <a class="maListe" href="listeCourse.php">Ma liste de course</a>
-            <a  class="seConnecter">Se connecter</a>
+            
+            <?php if ( isset($_SESSION['connected']) && $_SESSION['connected'] == true ) {
+                echo "<a class='gerer' href='gestion.php'>Gérer</a>
+                <a class='maListe' href='listeCourse.php'>Ma liste de course</a>
+                <a href='logOut.php' >Se déconnecter</a>";
+            }
+            else {
+                echo "<a  class='seConnecter'>Se connecter</a>";
+            }
+            ?>
         </nav>
         <h1> <a href="index.php">Ma Petite Cuisine </a></h1>
         <form action="index.php" method='GET'>
@@ -53,7 +60,7 @@
         </div>
         <div id="connexion" class="popUp">
             <h2>Connexion</h2>
-            <form action="" method="post">
+            <form action="logIn.php" method="POST">
                 <input class="inputInscription" type="text" name="mail" placeholder="Mail">   
                 <input class="inputInscription" type="password" name="mdp" placeholder="Mot de passe">   
                 <button class="buttonInscription" type="submit">Connexion</button>

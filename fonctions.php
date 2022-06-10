@@ -32,7 +32,6 @@ function moyenneNote($tableau){
             return 'quatre';
             break;
      }
-
  }
 
  function choixSaison(){
@@ -48,4 +47,15 @@ function moyenneNote($tableau){
     else if (date('m')==12 || date('m')<3){
         return 4;
     }
+ }
+
+ function afficherRecetteGestion($recettes){
+    $html = '<ul>';
+    foreach ($recettes as $recette){
+        $id = $recette['id_recette'];
+        $name = $recette['nom_recette'];
+        $html .=  "<li class='gestionRecette'><span>$name</span><a href='propositionRecette.php?id=$id'>Modifier</a></li>";
+    }
+    $html .= '</ul>';
+    return $html;
  }
