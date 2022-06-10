@@ -61,11 +61,11 @@ function moyenneNote($tableau){
  }
 
  function htmlDescriptionRecette($categories, $regimes, $saisons, $valeurRecette){
-    $difficulte = $valeurRecette[0]['indice_difficulte'];
-    $couts = $valeurRecette[0]['indice_cout'];
+    $difficulte = $valeurRecette[0]['nom_difficulte'];
+    $couts = $valeurRecette[0]['nom_cout'];
     $html = "<h3 class='h3Bandeau'> $difficulte | $couts | ";
     foreach($categories as $categorie){
-        $categorie = $categorie['indice_cat'];
+        $categorie = $categorie['nom_categorie'];
         $html .= "| $categorie ";
     }
     foreach($regimes as $regime){
@@ -85,7 +85,7 @@ function moyenneNote($tableau){
     foreach($tableau as $valeur){
         $id= $valeur[$cleId];
         $name=  $valeur[$cleName];
-        $html .="<input type='checkbox' name='$name' id='$name' value='$id'/>
+        $html .="<input type='checkbox' name='$cleName".'[]'."' id='$name' value='$id'/>
         <label for='$name'>$name</label><br>";
     }
     $html .='</div>';
@@ -93,12 +93,18 @@ function moyenneNote($tableau){
  }
             
  function htmlMenuRoulant($tableau, $cleId, $cleName, $nomTable){
-    $html="<select class='menuDeroulant' name='$nomTable' id='bon'>
-      <option value=''>--choisir un coût--</option>";
+    $html="<select class='menuDeroulant' name='$nomTable' id='$nomTable'>
+      <option value=''>-- $nomTable--</option>";
     foreach($tableau as $valeur){
         $id= $valeur[$cleId];
         $name= $valeur[$cleName];
-        $html .= "<option value='$id'>$name</option>";
+        if (isset($valeur['nom_unite'])){
+            $html .= "<option value='$id'>$name (en ".$valeur['nom_unite'].")</option>";
+        }
+        else{
+            $html .= "<option value='$id'>$name</option>";
+        }
+       
     }
         $html .='</select>';
         return $html;
