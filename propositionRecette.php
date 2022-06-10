@@ -16,11 +16,10 @@ $difficultes = readplat($db, 'difficultes');
 $ingredients = readIngredient($db);
  ?>
 
-?>
 
-  <form action="ajoutRecette.php" method="post" enctype="multipart/from-data">
+  <form action="ajoutRecette.php" method="post" enctype="multipart/form-data">
     <div class="proTitre">
-        <input type="text" name='nom_recette' laceholder="comment s'appelle votre recette? (Max 60 caractères)"/>
+        <input required type="text" name='nom_recette' placeholder="Comment s'appelle votre recette? (Max 60 caractères)"/>
     </div>
     <div class="selections">
         <div class="selection">
@@ -40,9 +39,9 @@ $ingredients = readIngredient($db);
             </div>
     </div>
     <div class="selections">
-        <?php echo htmlMenuRoulant($couts,'id_cout','indice_cout', 'couts');?>
+        <?php echo htmlMenuRoulant($couts,'id_cout','nom_cout', 'couts');?>
         <input class="selectionquantite" type="number" name="parts" id="personnePart" placeholder="Nombre de parts" min="1">
-        <?php echo htmlMenuRoulant($difficultes,'id_difficulte','indice_difficulte', 'difficultes');?>
+        <?php echo htmlMenuRoulant($difficultes,'id_difficulte','nom_difficulte', 'difficultes');?>
     </div>
     <div class="selections">
         <div class="tempsbuton">
@@ -58,26 +57,21 @@ $ingredients = readIngredient($db);
         <div class="selectionIngredient">
             <div class="ajoutingredient">
 
-            <?php echo htmlMenuRoulant($ingredients,'id_ingredients','nom_ingredient', 'ingredients');?>
-            <input class="selectionquantite" type="number" name="quantite" id="unite" placeholder="Quantité d'ingredient" min="0" step="0.5">
+            <?php echo htmlMenuRoulant($ingredients,'id_ingredient','nom_ingredient', 'ingredients');?>
+            <input class="selectionquantite" type="number" name="quantite" id="quantite" placeholder="Quantité d'ingredient" min="0" step="0.5">
             
-                <!-- AJOUTER NOM UNITE -->
+    
             
-                <button class="selectionAjouter"  name="ajoutIngredient">Ajouter</button>
+                <button class="selectionAjouter"  id="ajoutIngredient">Ajouter</button>
 
             </div>
                 <div class="ingredientAjout">
                     <div class="listeIngredient">
-                        <dt>
-                            <dd>3 tomates</dd>
-                            <dd>20cl d'huile d'olive</dd>
-                            <dd>200g de mozarella</dd>
-                            <dd>Basilic</dd>
-                        </dt>
+                        <dt></dt>
                     </div>
                     <div class="ajoutNouvelIngredient">
                         <input class="selectionAjouter" type="text" name="nouvelIngredient"  placeholder="Nouvel ingrédient"/>
-                        <button class="selectionAjouter" type="submit"  name="ajoutNouvelIngredient">Ajouter l'ingrédient</button>
+                        <button class="selectionAjouter" name="ajoutNouvelIngredient">Ajouter l'ingrédient</button>
                     </div>
                 </div>
             </div>
@@ -89,7 +83,7 @@ $ingredients = readIngredient($db);
 
     </div>
     <div class="selectionAjouterEtape">
-        <input id='ajoutPhoto' class="etapes" type="file" name="photoRecette"/>
+        <input type="file" id='ajoutPhoto' class="etapes"  name="photoRecette">
     </div>
         
      <div class="validerRecette">

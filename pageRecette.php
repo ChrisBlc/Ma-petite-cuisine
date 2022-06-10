@@ -68,16 +68,20 @@ var_dump($etapes);
                 </div>
                 <p class="commentaire">Très bonne recette, merci !</p>
             </div>
-            <div class="commentairesRecette ajoutCommentaire">
-                <h4>Pseudo</h4>
-                <form action="" method="POST">
-                    <div>
-                        <label for="note">Quelle note donnez vous?</label>
-                    <input required type="number" name="note" min="0" max="5"/></div>
-                    <textarea required name="avis" placeholder="votre commentaire ici"></textarea><br>
-                    <input type="submit" class="buttonInscription centrer"/>
-                </form>
-            </div>    
+            <?php if(isset($_SESSION['connected'])){?>
+                <div class="commentairesRecette ajoutCommentaire">
+                    <h4>Pseudo</h4>
+                    <form action="ajoutAvis.php" method="POST">
+                        <input type='hidden' name='id_recette' value='<?php echo $_GET['id']?>'/>
+                        <div>
+                            <label for="note">Quelle note donnez vous?</label>
+                            <input required type="number" name="note" min="0" max="5"/>
+                        </div>
+                        <textarea required name="avis" placeholder="votre commentaire ici"></textarea><br>
+                        <input type="submit" class="buttonInscription centrer"/>
+                    </form>
+                </div>    
+            <?php }?>
         </div>
     </div>
 </body>

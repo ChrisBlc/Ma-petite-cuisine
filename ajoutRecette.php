@@ -2,4 +2,5 @@
 session_start();
 require('bdd.php');
 var_dump($_POST);
-createRecette($db, $_POST , $_SESSION['id_utilisateur']);
+var_dump($_FILES);
+createRecette($db, $_POST , $_SESSION['id_utilisateur'], $_FILES);
