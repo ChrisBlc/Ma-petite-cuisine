@@ -32,7 +32,6 @@ function moyenneNote($tableau){
             return 'quatre';
             break;
      }
-
  }
 
  function choixSaison(){
@@ -49,6 +48,7 @@ function moyenneNote($tableau){
         return 4;
     }
  }
+
 
  function htmlBandeau($tableau){
      $nom = $tableau[0]['nom_recette'];
@@ -79,3 +79,42 @@ function moyenneNote($tableau){
     $html .= '</h3>';
     return $html;
  }
+
+ function htmlCheckBox($tableau, $cleId, $cleName){
+    $html ='<div>';
+    foreach($tableau as $valeur){
+        $id= $valeur[$cleId];
+        $name=  $valeur[$cleName];
+        $html .="<input type='checkbox' name='$name' id='$name' value='$id'/>
+        <label for='$name'>$name</label><br>";
+    }
+    $html .='</div>';
+    return $html;
+ }
+            
+ function htmlMenuRoulant($tableau, $cleId, $cleName, $nomTable){
+    $html="<select class='menuDeroulant' name='$nomTable' id='bon'>
+      <option value=''>--choisir un coût--</option>";
+    foreach($tableau as $valeur){
+        $id= $valeur[$cleId];
+        $name= $valeur[$cleName];
+        $html .= "<option value='$id'>$name</option>";
+    }
+        $html .='</select>';
+        return $html;
+    }
+
+
+
+ function afficherRecetteGestion($recettes){
+    $html = '<ul>';
+    foreach ($recettes as $recette){
+        $id = $recette['id_recette'];
+        $name = $recette['nom_recette'];
+        $html .=  "<li class='gestionRecette'><span>$name</span><a href='propositionRecette.php?id=$id'>Modifier</a></li>";
+    }
+    $html .= '</ul>';
+    return $html;
+ }
+
+

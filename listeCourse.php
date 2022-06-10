@@ -1,4 +1,9 @@
 <?php 
+session_start();
+if ( !isset($_SESSION['connected'])) {
+    header('location: index.php?interdit=true');
+    exit();
+}
 $titrePage = 'Ma liste de course';
 require_once("banniere.php");?>
 

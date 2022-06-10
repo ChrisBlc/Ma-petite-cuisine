@@ -56,7 +56,32 @@ $(function(){
         $("header").addClass("smallHeader");
       }
     });
+
+  /* AJOUT INPUT HIDDEN INGREDIENT et dans la liste */
+  $('#ajoutIngredient').click(function (e) { 
+    e.preventDefault();
+    var liste, value, quantite;
+    liste = document.getElementById("ingred");
+    value = liste.options[liste.selectedIndex].value;
+    nom = liste.options[liste.selectedIndex].text;
+    quantite = document.getElementById("quantite").value;
+    $('.listeIngredient dt').append("<input type='hidden' name='ingredients["+'id'+"][]' value='"+value+"' />");
+    $('.listeIngredient dt').append("<input type='hidden' name='ingredients["+'quantite'+"][]' value='"+quantite+"' />");
+    $('.listeIngredient dt').append('<dd>' + quantite + ' ' + nom + '</dd>');
+  });
+
+ /* AJOUT INPUT HIDDEN etapes et dans la liste */
+ $('#ajouterEtape').click(function (e) { 
+   e.preventDefault();
+   $("<textarea name='etapes[]' placeholder='Etape: Rentrez vous instructions' rows='5' cols='180'></textarea>").insertBefore('#divetape');
+ });
 });
+
+/* var input = document.createElement("input");
+input.setAttribute("type", "hidden");
+input.setAttribute("name", "name_you_want");
+input.setAttribute("value", "value_you_want");
+document.getElementById("chells").appendChild(input); */
      
     
     

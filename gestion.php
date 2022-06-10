@@ -1,18 +1,23 @@
 <?php 
+session_start();
+if ( !isset($_SESSION['connected'])) {
+    header('location: index.php?interdit=true');
+    exit();
+};
 $titrePage = 'Gestion';
-require_once("banniere.php");?>
+require_once("banniere.php");
+require_once('fonctions.php');
+require_once('bdd.php');
+
+$recettesUser = readRecettesByUser($db, 2);
+$aValider = readRecetteAValider($db);
+?>
 
 <div class="gestionContainer">
     <h2> Mes recettes </h2>
-    <ul>
-        <li class='gestionRecette'><span>Gateau à la boue</span><a href="">Modifier</a></li>
-        <li class='gestionRecette'><span>Gateau à la boue</span><a href="">Modifier</a></li>  
-    </ul>
+        <?php echo afficherRecetteGestion($recettesUser) ?>
     <h2> Recettes à valider </h2>
-    <ul>
-        <li class='gestionRecette'><span>Gateau à la boue</span><a href="">Valider</a></li>
-        <li class='gestionRecette'><span>Gateau à la boue</span><a href="">Valider</a></li>  
-    </ul>
+        <?php echo afficherRecetteGestion($aValider) ?>
 </div>
 
 
