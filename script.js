@@ -61,7 +61,7 @@ $(function(){
   $('#ajoutIngredient').click(function (e) { 
     e.preventDefault();
     var liste, value, quantite;
-    liste = document.getElementById("ingred");
+    liste = document.getElementById("ingredients");
     value = liste.options[liste.selectedIndex].value;
     nom = liste.options[liste.selectedIndex].text;
     quantite = document.getElementById("quantite").value;

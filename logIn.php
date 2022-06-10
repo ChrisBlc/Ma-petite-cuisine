@@ -2,8 +2,8 @@
 session_start();
 require_once('bdd.php');
 $infosUsers = readMdpIDAdmin($db);
-var_dump($infosUsers);
-var_dump($_POST);
+/* var_dump($infosUsers);
+var_dump($_POST); */
 
 foreach($infosUsers as $infosUser){
     if ($_POST['mail'] == $infosUser['mail_utilisateur']){
