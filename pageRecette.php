@@ -1,14 +1,17 @@
 <?php 
 $titrePage = "Page recette";
 require_once("banniere.php");
+require_once('bdd.php');
+require_once('fonctions.php');
+$valeursTableRecette = readValeurRecette($db,$_GET['id']);
+$categories = readCategorieRecette($db,$_GET['id']);
+$regimes =  readRegimeRecette($db,$_GET['id']);
+$saisons =  readSaisonRecette($db,$_GET['id']);
 ?>
 
     <div class="corpsPageRecette">
         <div class="bandeau">
-            <div class="bandeauGauche">
-                <h2 class="section">Bo Bun &nbsp</h2>
-                <h3 class="username">Par nom d'utilisateur</h3>
-            </div>
+            <?php echo htmlBandeau($valeursTableRecette)?>
             <div class="bandeauDroite">
                 <div class="etoilesRecette">
                    
@@ -16,7 +19,7 @@ require_once("banniere.php");
                 <h3 class="avis">82 avis</h3>
             </div>
         </div>
-        <h3 class="h3Bandeau">35 minutes  |  Facile  |  Sans porc |  Bon marché |  Toutes saisons </h3>
+        <?php echo htmlDescriptionRecette($categories, $regimes, $saisons, $valeursTableRecette)?>
         <div class="divPhoto">
             <img class="photoPrincipale" src="img/PhotoRecettes/bobun.jpeg" alt="Photo de Bo bun">
         </div>
