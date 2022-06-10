@@ -6,68 +6,43 @@ if ( !isset($_SESSION['connected'])) {
     exit();
 }
 require_once("banniere.php");
+require_once('bdd.php');
+require_once('fonctions.php');
+$saisons = readplat($db, 'saisons');
+$categories = readplat($db, 'categories');
+$regimes = readplat($db, 'regimes');
+$couts = readplat($db, 'couts');
+$difficultes = readplat($db, 'difficultes');
+$ingredients = readIngredient($db);
+ ?>
+
 ?>
 
   <form action="ajoutRecette.php" method="post" enctype="multipart/from-data">
     <div class="proTitre">
-        <input type="text" name='nom_recette' laceholder="comment s'appelle votre recette? (Max 60 caractères)">
+        <input type="text" name='nom_recette' laceholder="comment s'appelle votre recette? (Max 60 caractères)"/>
     </div>
     <div class="selections">
         <div class="selection">
             <h2>Type de plat :</h2>
-            <div>
-                <input type="checkbox" name="categorie[]" id="aperitif" value="1">
-                    <label for="aperitif">Apéritif</label><br>
-                <input type="checkbox" name="categorie[]" id="entree" value="2">
-                    <label for="entree">Entrée</label><br>
-                <input type="checkbox" name="categorie[]" id="plat" value="3">
-                    <label for="plat">Plat</label><br>
-                <input type="checkbox" name="categorie[]" id="dessert" value="4">
-                    <label for="dessert">Dessert</label>
-            </div>
+
+           
+            <?php echo htmlCheckBox($categories,'id_categorie','nom_categorie');?>
+           
         </div>
         <div class="selection">
             <h2>Saison du plat :</h2>
-            <div>
-                <input type="checkbox" name="saison[]" id="printemps" value="1">
-                    <label for="printemps">Printemps</label><br>
-                <input type="checkbox" name="saison[]" id="ete" value="2">
-                    <label for="ete">Eté</label><br>
-                <input type="checkbox" name="saison[]" id="automne" value="3">
-                    <label for="automne">Automne</label><br>
-                <input type="checkbox" name="saison[]" id="hiver" value="4">
-                    <label for="hiver">Hiver</label>
-            </div>
+            <?php echo htmlCheckBox($saisons,'id_saison','nom_saison');?>
         </div>
             <div class="selection">
                 <h2>Régime :</h2>
-                <div>
-                <input type="checkbox" name="regime[]" id="vegetarien" value="1">
-                        <label for="vegetarien">Végétarien</label><br>
-                    <input type="checkbox" name="regime[]" id="vegan" value="2">
-                        <label for="vegan">Végan</label><br>
-                    <input type="checkbox" name="regime[]" id="sansPorc" value="3">
-                        <label for="sansPorc">Sans porc</label><br>
-                    <input type="checkbox" name="regime[]" id="sansGluten" value="4">
-                        <label for="sansGluten">Sans gluten</label>
-                </div>
+                <?php echo htmlCheckBox($regimes,'id_regime','nom_regime');?>
             </div>
     </div>
     <div class="selections">
-        <select class="menuDeroulant" name="cout" id="bon">
-            <option value="">--choisir un coût--</option>
-            <option value="1">Bon Marché</option>
-            <option value="2">Coût Moyen</option>
-            <option value="3">Assez Cher</option>
-        </select>
+        <?php echo htmlMenuRoulant($couts,'id_cout','indice_cout', 'couts');?>
         <input class="selectionquantite" type="number" name="parts" id="personnePart" placeholder="Nombre de parts" min="1">
-        
-        <select class="menuDeroulant" name="difficulte" id="dificile">
-            <option value="">--choisir un Facilité--</option>
-            <option value="1">Facile</option>
-            <option value="2">Moyen</option>
-            <option value="3">Dificile</option>
-        </select>
+        <?php echo htmlMenuRoulant($difficultes,'id_difficulte','indice_difficulte', 'difficultes');?>
     </div>
     <div class="selections">
         <div class="tempsbuton">
@@ -82,15 +57,14 @@ require_once("banniere.php");
     
         <div class="selectionIngredient">
             <div class="ajoutingredient">
-                <select class="menuDeroulant"  id="ingred">
-                    <option value="">--choisir un ingredient--</option>
-                    <option value="2">tomate</option>
-                    <option value="334">huile d'olive</option>
-                    <option value="34">mozarella</option>
-                    <option value="4343">Basilic</option>
-                </sele'ct>
-                <input class="selectionquantite" type="number"  id="quantite" placeholder="Quantité d'ingredient" min="0" step="0.5">
-                <button class="selectionAjouter" id='ajoutIngredient' name="ajoutIngredient">Ajouter</button>
+
+            <?php echo htmlMenuRoulant($ingredients,'id_ingredients','nom_ingredient', 'ingredients');?>
+            <input class="selectionquantite" type="number" name="quantite" id="unite" placeholder="Quantité d'ingredient" min="0" step="0.5">
+            
+                <!-- AJOUTER NOM UNITE -->
+            
+                <button class="selectionAjouter"  name="ajoutIngredient">Ajouter</button>
+
             </div>
                 <div class="ingredientAjout">
                     <div class="listeIngredient">
@@ -107,10 +81,12 @@ require_once("banniere.php");
                     </div>
                 </div>
             </div>
+
     <div class="selectionAjouterEtape" class='etapes' >
         <textarea name="etapes[]" placeholder="Etape1: Rentrez vous instructions" rows="5" cols="180"></textarea>
         <textarea name="etapes[]" placeholder="Etape2: Rentrez vous instructions" rows="5" cols="180"></textarea>
         <div class="etapes" id='divetape'><div class="ajouter ajoutEtape"  id='ajouterEtape'>Ajouter une etape</div></div>
+
     </div>
     <div class="selectionAjouterEtape">
         <input id='ajoutPhoto' class="etapes" type="file" name="photoRecette"/>

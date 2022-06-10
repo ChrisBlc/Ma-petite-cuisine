@@ -49,6 +49,27 @@ function readCategorie($cnx,$cat,$nom, $id){
         return header('location:index.php');
 }
 
+//  propositionRecette
+function readplat($cnx, $nomTable){
+    $sql = " SELECT * FROM $nomTable ";
+    $platCategorie = $cnx->query($sql);
+    return$platCategorie->fetchAll();
+}
+$couts = readplat($db, 'couts');
+function readIngredient($cnx){
+    $sql = " SELECT id_ingredients,nom_ingredient, id_unite FROM ingredients ";
+    $ingredients = $cnx->query($sql);
+    return$ingredients->fetchAll();
+}
+
+// function createRecette($cnx, $nomRecette, $tempsPreparation, $tempsCuisson, $validationAdmin, $datePublication, $idCout, $idDifficulte, $idUtilisateur){
+//     $r = "INSERT INTO recette(nomRecette, tempsPreparation, tempsCuisson, validationAdmin, datePublication, idCout, idDifficulte, idUtilisateur) VALUES (:nomRecette, :tempsPreparation, :tempsCuisson, :validationAdmin, :datePublication, :idCout, :idDifficulte, :idUtilisateur)";
+//     $req = $cnx->prepare($r);
+//     $valeurs = [':nomRecette'=>$nomRecette, ':tempsPreparation'=>$tempsPreparation, ':tempsCuisson'=>$tempsCuisson, ':validationAdmin'=>$validationAdmin, ':datePublication'=>$datePublication, ':idCout'=>$idCout, ':idDifficulte'=>$idDifficulte, ':idUtilisateur'=>$idUtilisateur];
+//     return $req->execute($valeurs);
+// }
+
+
 function readRecettesByUser($cnx, $idUser){
     $r = "SELECT id_recette, nom_recette FROM recettes WHERE id_utilisateur = :idUser";
     $recettes = $cnx->prepare($r);
@@ -181,3 +202,4 @@ function createRecette($cnx, $donnees , $idUser){
         $req->execute($photos);
     }
 }
+

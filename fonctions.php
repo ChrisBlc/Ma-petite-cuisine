@@ -49,6 +49,32 @@ function moyenneNote($tableau){
     }
  }
 
+ function htmlCheckBox($tableau, $cleId, $cleName){
+    $html ='<div>';
+    foreach($tableau as $valeur){
+        $id= $valeur[$cleId];
+        $name=  $valeur[$cleName];
+        $html .="<input type='checkbox' name='$name' id='$name' value='$id'/>
+        <label for='$name'>$name</label><br>";
+    }
+    $html .='</div>';
+    return $html;
+ }
+            
+ function htmlMenuRoulant($tableau, $cleId, $cleName, $nomTable){
+    $html="<select class='menuDeroulant' name='$nomTable' id='bon'>
+      <option value=''>--choisir un coût--</option>";
+    foreach($tableau as $valeur){
+        $id= $valeur[$cleId];
+        $name= $valeur[$cleName];
+        $html .= "<option value='$id'>$name</option>";
+    }
+        $html .='</select>';
+        return $html;
+    }
+
+
+
  function afficherRecetteGestion($recettes){
     $html = '<ul>';
     foreach ($recettes as $recette){
@@ -59,3 +85,4 @@ function moyenneNote($tableau){
     $html .= '</ul>';
     return $html;
  }
+
