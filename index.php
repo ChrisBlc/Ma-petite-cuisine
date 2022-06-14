@@ -28,19 +28,21 @@ if (isset($_GET['cat'])){
     $recettes = readInfosRecettesByCat($db, $cat ,$id);
     $htmlTitre = "<h2>".ucfirst(substr($cat,0,-1)).": ".$categorie[$nom]. "</h2>";
 }
-else if(isset($_GET['search'])){
-    /* METTRE FONCTION RECHERCHE */
+else if(isset($_GET['recherche'])){
+    $recettes = readRecettesBySearch($db, $_GET['recherche']);
+    $htmlTitre = "<h2> Votre recherche: ".$_GET['recherche']. "</h2>";
 }
 else{
     $id = choixSaison();
     $cat = 'saisons';
     $recettes = readInfosRecettesByCat($db, $cat ,$id);
     $htmlTitre = "<h2>Tendance cette Saison</h2>";
+    $recetteJour = readInfoRecettesJour($db);
 ?>
     <div class="platDuJour">
-        <a href="#">
-        <img src="img/PhotoRecettes/Pates_au_pesto_de_coriandre.jpg" alt="Photo de pate au pesto de coriandre">
-        <div class="label">Recettes du jour: Pates au pesto de coriandre </div>
+        <a href="pageRecette.php?id=<?php echo $recetteJour['id_recette'] ?>">
+        <img src="img/PhotoRecettes/<?php echo $recetteJour['nom_photo'] ?>" alt="Photo de <?php echo $recetteJour['nom_photo'] ?>">
+        <div class="label">Recette au hasard: <?php echo $recetteJour['nom_recette'] ?> </div>
         <a>
     </div>
     
@@ -50,27 +52,33 @@ else{
         <div class="recetteContainer">
       
             <?php
-            foreach( $recettes as $k => $recette){ 
-                $nomRecette = $recette['nom_recette'];
-                $idRecette = $recette['id_recette'];
-                $photoRecette = $recette['nom_photo'];
-                $notesRecette = readNotes($db, $idRecette);
-                $nombreAvis = count($notesRecette);
-                $moyenneRecette = moyenneNote($notesRecette);
-            ?>
-            <div class="recetteCard">
-                <a href="pageRecette.php?id=<?=$idRecette?>"> 
-                    <img src="Img/PhotoRecettes/<?php echo $photoRecette?>" alt="<?=$nomRecette?>">
-                    <div class="recetteTitle"><?=$nomRecette?></div>
-                </a>  
-                <div class="recetteAvis">
-                    <div class="etoiles <?php echo choixClasseEtoiles($moyenneRecette) ?>">
+            if ($recettes == null){
+                echo "<h2> Pas de recette correspondant a votre recherche </h2>";
+            } 
+            else {
+                foreach( $recettes as $k => $recette){ 
+                    $nomRecette = $recette['nom_recette'];
+                    $idRecette = $recette['id_recette'];
+                    $photoRecette = $recette['nom_photo'];
+                    $notesRecette = readNotes($db, $idRecette);
+                    $nombreAvis = count($notesRecette);
+                    $moyenneRecette = moyenneNote($notesRecette);
+                ?>
+                <div class="recetteCard">
+                    <a href="pageRecette.php?id=<?=$idRecette?>"> 
+                        <img src="Img/PhotoRecettes/<?php echo $photoRecette?>" alt="<?=$nomRecette?>">
+                        <div class="recetteTitle"><?=$nomRecette?></div>
+                    </a>  
+                    <div class="recetteAvis">
+                        <div class="etoiles <?php echo choixClasseEtoiles($moyenneRecette) ?>">
+                        </div>
+                        
+                        <a href="pageRecette.php?id=<?=$idRecette?>#Avis"><?= $nombreAvis?> Avis</a>   
                     </div>
-                    
-                    <a href="pageRecette.php?id=<?=$idRecette?>#Avis"><?= $nombreAvis?> Avis</a>   
-                </div>
-            </div>  
-             <?php }?>
+                </div>  
+                <?php }
+            }?>
+
              <div class="recetteCard ajout">
                 <a class="ajouter"  href="propositionRecette.php">Ajouter une recette</a>
             </div>

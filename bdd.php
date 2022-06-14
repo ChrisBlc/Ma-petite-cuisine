@@ -13,24 +13,46 @@ function readInfosRecettesByCat($db, $cat, $idCat){
             LEFT JOIN photos ON recettes.id_recette = photos.id_recette 
             LEFT JOIN recettes_saisons ON recettes.id_recette = recettes_saisons.id_recette 
             LEFT JOIN saisons ON recettes_saisons.id_saison = saisons.id_saison 
-            WHERE saisons.id_saison = $idCat;";
+            WHERE saisons.id_saison = $idCat
+            AND validation_admin = 1;";
             break;
         case 'regimes':
             $sqlinfoCard = "SELECT recettes.id_recette,nom_recette,nom_photo FROM recettes
             LEFT JOIN photos ON recettes.id_recette = photos.id_recette
             LEFT JOIN recettes_regimes ON recettes.id_recette = recettes_regimes.id_recette 
             LEFT JOIN regimes ON recettes_regimes.id_regime = regimes.id_regime 
-            WHERE regimes.id_regime = $idCat;";
+            WHERE regimes.id_regime = $idCat
+            AND validation_admin = 1;";
             break;
         case 'categories':
             $sqlinfoCard = "SELECT recettes.id_recette,nom_recette,nom_photo FROM recettes
             LEFT JOIN photos ON recettes.id_recette = photos.id_recette 
             LEFT JOIN recettes_categories ON recettes.id_recette = recettes_categories.id_recette LEFT JOIN categories ON recettes_categories.id_categorie = categories.id_categorie 
-            WHERE categories.id_categorie = $idCat;";
+            WHERE categories.id_categorie = $idCat
+            AND validation_admin = 1;";
             break;
     }
     $recettes = $db->query($sqlinfoCard);
     return $recettes->fetchAll();
+}
+
+function readInfoRecettesJour($cnx){
+    $r = "SELECT recettes.id_recette, nom_recette, nom_photo FROM recettes 
+    LEFT JOIN photos on recettes.id_recette = photos.id_recette
+    WHERE validation_admin = 1
+    ORDER BY RAND() LIMIT 1;";
+    $titres = $cnx->query($r);
+    return $titres->fetch();
+}
+
+function readRecettesBySearch($cnx, $recherche){
+    $r = "SELECT recettes.id_recette,nom_recette,nom_photo FROM recettes 
+    LEFT JOIN photos ON recettes.id_recette = photos.id_recette 
+    WHERE nom_recette LIKE '%".$recherche."%'"."
+    AND validation_admin = 1";
+    $req = $cnx->prepare($r);
+    $req->execute() ;
+    return $req->fetchAll();
 }
 function readNotes($cnx, $idRecette){
     $sqlNotesRecette = "SELECT indice_note FROM avis WHERE id_recette = $idRecette "  ;
@@ -98,13 +120,9 @@ function readSaisonRecette($cnx,$id_recette){
 
 
 function readAvisRecette($cnx,$id_recette){
-    $sql5 = "SELECT desc_avis, indice_note, pseudo_utilisateur FROM `avis` LEFT JOIN utilisateurs ON utilisateurs.id_utilisateur = avis.id_utilisateur WHERE id_recette=:id_recette";
-
-
-function readAvisRecette($cnx,$id_recette){
     $sql5 = "SELECT desc_avis, indice_note, pseudo_utilisateur
     FROM `avis` LEFT JOIN utilisateurs ON utilisateurs.id_utilisateur = avis.id_utilisateur
-    WHERE id_recette=1";
+    WHERE id_recette= :id_recette ";
     $valeurs = $cnx->prepare($sql5);
     $id = [':id_recette'=>$id_recette];
     $valeurs->execute($id);
@@ -143,6 +161,11 @@ function readEtapesRecette($cnx,$id_recette){
     return $valeurs->fetchAll();
 }
 
+function readAllTitle($cnx){
+    $r = "SELECT id_recette,nom_recette FROM recettes";
+    $titres = $cnx->query($r);
+    return $titres->fetchAll();
+}
 
 //  propositionRecette
 function readplat($cnx, $nomTable){
@@ -152,7 +175,7 @@ function readplat($cnx, $nomTable){
 }
 
 function readIngredient($cnx){
-    $sql = " SELECT id_ingredient,nom_ingredient, id_unite FROM ingredients ";
+    $sql = " SELECT id_ingredient,nom_ingredient, ingredients.id_unite, nom_unite  FROM ingredients LEFT JOIN unites ON ingredients.id_unite = unites.id_unite";
     $ingredients = $cnx->query($sql);
     return$ingredients->fetchAll();
 }
@@ -192,6 +215,12 @@ function readAllInfoRecetteById($cnx, $idRecette){
     $allinfos['regimes'] = readInfosMultiplesById($cnx,['id_regime'],'recettes_regimes', $idRecette);
     $allinfos['etapes'] = readInfosMultiplesById($cnx,['desc_etape'],'etapes', $idRecette);
     $allinfos['photos'] = readInfosMultiplesById($cnx,['nom_photo'],'photos', $idRecette);
+
+    $r2 = "SELECT recettes_ingredients.id_ingredient,Dosage,nom_ingredient FROM `recettes_ingredients` LEFT JOIN ingredients ON recettes_ingredients.id_ingredient = ingredients.id_ingredient WHERE id_recette = :id_recette";
+    $ingredients = $cnx->prepare($r2);
+    $ingredients->execute([':id_recette' => $idRecette]);
+    $allinfos['ingredients'] = $ingredients->fetchAll();
+
     return $allinfos;
 }
 
@@ -218,8 +247,8 @@ function createRecette($cnx, $donnees , $idUser, $files){
         $donnees['nom_regime'][] = 3;
     }
     
-
-    $r = "INSERT INTO recettes(nom_recette, temps_preparation, temps_cuisson, validation_admin, date_publication, id_cout, id_difficulte, id_utilisateur)  VALUES (:nom_recette,:tempsPrep,:tempsCui, 0,".date("Y-m-d").",:cout, :difficulte, :idUser)";
+    $date = date('Y-m-d');
+    $r = "INSERT INTO recettes(nom_recette, temps_preparation, temps_cuisson, validation_admin, date_publication, id_cout, id_difficulte, id_utilisateur)  VALUES (:nom_recette,:tempsPrep,:tempsCui, 0,".$date.",:cout, :difficulte, :idUser)";
     $req= $cnx->prepare($r);
     $valeurTableRecette = [
         ':nom_recette' => $donnees['nom_recette'],
@@ -293,7 +322,10 @@ function createRecette($cnx, $donnees , $idUser, $files){
         ];
         $req2->execute($photo);
     }
+    return $idRecette;
 }
+
+
 // create utilisateur
 function createUtilisateur($cnx, $nom, $prenom, $mail, $mdp, $pseudo){
     $r = "INSERT INTO utilisateurs(nom_utilisateur, prenom_utilisateur, mail_utilisateur, mdp_utilisateur, pseudo_utilisateur) VALUES (:nom, :prenom, :mail, :mdp, :pseudo)";
@@ -315,4 +347,81 @@ function createAvis($cnx, $id_utilisateur,$donnees){
     $req->execute($avis);
 }
 
+function createInfosMultiple($cnx, $infos, $tableName, $champsName, $idRecette){
+    foreach ($infos as $info){
+        $r = "INSERT INTO $tableName($champsName, id_recette) VALUES (:idName ,:id_recette)";
+        $req = $cnx->prepare($r);
+        $valeurs = [
+            ':idName' => $info,
+            ':id_recette' => $idRecette
+        ];
+        $req->execute($valeurs);
+    }
+}
+/* ========================================================== UPDATE ==================================================================*/
+
+function updateRecette($cnx, $donnees, $valid ){
+    // update dans table recettes
+    $r =" UPDATE recettes SET nom_recette = :nom_recette, 
+        temps_preparation = :temps_preparation ,
+        temps_cuisson = :temps_cuisson,
+        validation_admin = :validation_admin, 
+        id_cout = :id_cout, 
+        id_difficulte = :id_difficulte
+        WHERE id_recette = :id_recette";
+    $req = $cnx->prepare($r);
+    $tableRecette = [
+        ':nom_recette' => $donnees['nom_recette'],
+        ':temps_preparation' => $donnees['tempsPrep'],
+        ':temps_cuisson' => $donnees['tempsCui'],
+        ':validation_admin' => $valid,
+        ':id_cout' => $donnees['couts'],
+        ':id_difficulte' => $donnees['difficultes'],
+        ':id_recette' => $donnees['id_recette']
+    ];
+    $req->execute($tableRecette);
+
+    // update dans catégories, regimes, saisons, etapes
+
+    deleteInfosMultiple($cnx, 'recettes_categories', $donnees['id_recette']);
+    createInfosMultiple($cnx, $donnees['nom_categorie'], 'recettes_categories' , 'id_categorie',  $donnees['id_recette']);
+
+    deleteInfosMultiple($cnx, 'recettes_regimes', $donnees['id_recette']);
+    createInfosMultiple($cnx, $donnees['nom_regime'], 'recettes_regimes' , 'id_regime',  $donnees['id_recette']);
+
+    deleteInfosMultiple($cnx, 'recettes_saisons',$donnees['id_recette']);
+    createInfosMultiple($cnx, $donnees['nom_saison'], 'recettes_saisons' , 'id_saison',  $donnees['id_recette']);
+
+    deleteInfosMultiple($cnx, 'etapes', $donnees['id_recette']);
+    createInfosMultiple($cnx, $donnees['etapes'], 'etapes' , 'desc_etape',  $donnees['id_recette']);
+
+    // update ingredients
+    deleteInfosMultiple($cnx, 'recettes_ingredients', $donnees['id_recette']);
+    for($i=0; $i < count($donnees['ingredients']['id']); $i++ ){
+        $r = "INSERT INTO recettes_ingredients VALUES ('',:idRecette,:id_ingredient, :Dosage )";
+        $req = $cnx->prepare($r);
+        $ingredients = [
+            ':idRecette' => $donnees['id_recette'],
+            ':id_ingredient' => $donnees['ingredients']['id'][$i],
+            ':Dosage' => ($donnees['ingredients']['quantite'][$i])
+        ];
+        $req->execute($ingredients);
+    }
+}
+
+
+
+
+/*===============================================================DELETE==================================================================*/
+function deleteInfosMultiple($cnx, $tableName, $idDelete){
+    $r = "DELETE FROM $tableName WHERE 'id_recette' = :idDelete ";
+    $req = $cnx->prepare($r);
+    $req->execute([':idDelete' => $idDelete]);
+}
+
+function deleteRecette($cnx, $idDelete){
+    $r = "DELETE FROM `recettes` WHERE `recettes`.`id_recette` = :idDelete";
+    $req = $cnx->prepare($r);
+    $req->execute([':idDelete' => $idDelete]);
+}
 

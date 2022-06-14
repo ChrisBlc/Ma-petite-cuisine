@@ -25,7 +25,7 @@
         <h1> <a href="index.php">Ma Petite Cuisine </a></h1>
         <form action="index.php" method='GET'>
             <div class="burger"></div>
-            <input class="recherche" type="text" name="recherche" placeholder="Recherche (plats,ingrédients)">
+            <input class="recherche" type="text" name="recherche" placeholder="Recherche par plat">
             <button class="loupe" type="submit"></button>
         </form>
         <div class="menuBurger">

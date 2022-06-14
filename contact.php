@@ -1,4 +1,5 @@
 <?php 
+session_start();
 $titrePage = 'Contacts';
 require_once("banniere.php");
 ?>

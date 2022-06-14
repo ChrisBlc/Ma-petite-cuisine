@@ -5,7 +5,7 @@ require_once("banniere.php");
 ?>
 <div class="inscriptionContainer">
     <h2>Inscription</h2>
-    <form action="create.php" method="post">
+    <form action="createUser.php" method="post">
         <input required class="inputInscription" type="text" name="nom_utilisateur" placeholder="Nom">
         <input required class="inputInscription" type="text" name="prenom_utilisateur" placeholder="Prénom">
         <input required class="inputInscription" type="text" name="pseudo_utilisateur" placeholder="Pseudo">
