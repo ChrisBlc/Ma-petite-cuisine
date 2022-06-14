@@ -4,6 +4,9 @@ $titrePage = 'Ma petite Cuisine';
 require_once("bdd.php");
 require_once("fonctions.php");
 require_once("banniere.php");
+if (isset($_GET['wrongmdp'])){
+    echo "<script>alert('Mot de Passe ou Mail incorrect')</script>";
+}
 if (isset($_GET['interdit'])){
     echo "<script>alert('Cette page est reservé aux personnes identifiés')</script>";
 }

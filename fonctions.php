@@ -151,5 +151,11 @@ function moyenneNote($tableau){
     foreach ($donnees[$nomTable] as $cat){
         $idCatSelected[] = $cat[$nomId];
     }
-    return $idCatSelected;
+    if (isset($idCatSelected)){
+        return $idCatSelected;
+    } 
+    else{
+        return [];
+    }
+    
  }
