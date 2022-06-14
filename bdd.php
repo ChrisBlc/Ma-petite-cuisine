@@ -194,7 +194,7 @@ function readRecetteAValider($cnx){
 }
 
 function readMdpIDAdmin($cnx){
-    $r = "SELECT id_utilisateur,mail_utilisateur,mdp_utilisateur,admin FROM `utilisateurs`";
+    $r = "SELECT id_utilisateur,mail_utilisateur,mdp_utilisateur,admin,pseudo_utilisateur FROM `utilisateurs`";
     $infoUser = $cnx->query($r);
     return $infoUser->fetchAll();
 }
@@ -384,19 +384,27 @@ function updateRecette($cnx, $donnees, $valid ){
     // update dans catégories, regimes, saisons, etapes
 
     deleteInfosMultiple($cnx, 'recettes_categories', $donnees['id_recette']);
-    createInfosMultiple($cnx, $donnees['nom_categorie'], 'recettes_categories' , 'id_categorie',  $donnees['id_recette']);
+    if (isset($donnees['nom_categorie'])){
+         createInfosMultiple($cnx, $donnees['nom_categorie'], 'recettes_categories' , 'id_categorie',  $donnees['id_recette']);
+    }
+   
 
     deleteInfosMultiple($cnx, 'recettes_regimes', $donnees['id_recette']);
+    if (isset($donnees['nom_regime'])){
     createInfosMultiple($cnx, $donnees['nom_regime'], 'recettes_regimes' , 'id_regime',  $donnees['id_recette']);
+    }
 
     deleteInfosMultiple($cnx, 'recettes_saisons',$donnees['id_recette']);
+    if (isset($donnees['nom_regime'])){
     createInfosMultiple($cnx, $donnees['nom_saison'], 'recettes_saisons' , 'id_saison',  $donnees['id_recette']);
+    }
 
     deleteInfosMultiple($cnx, 'etapes', $donnees['id_recette']);
     createInfosMultiple($cnx, $donnees['etapes'], 'etapes' , 'desc_etape',  $donnees['id_recette']);
 
     // update ingredients
     deleteInfosMultiple($cnx, 'recettes_ingredients', $donnees['id_recette']);
+
     for($i=0; $i < count($donnees['ingredients']['id']); $i++ ){
         $r = "INSERT INTO recettes_ingredients VALUES ('',:idRecette,:id_ingredient, :Dosage )";
         $req = $cnx->prepare($r);
@@ -414,7 +422,7 @@ function updateRecette($cnx, $donnees, $valid ){
 
 /*===============================================================DELETE==================================================================*/
 function deleteInfosMultiple($cnx, $tableName, $idDelete){
-    $r = "DELETE FROM $tableName WHERE 'id_recette' = :idDelete ";
+    $r = "DELETE FROM $tableName WHERE id_recette = :idDelete ";
     $req = $cnx->prepare($r);
     $req->execute([':idDelete' => $idDelete]);
 }
