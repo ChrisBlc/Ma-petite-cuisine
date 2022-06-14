@@ -39,8 +39,8 @@ function readInfosRecettesByCat($db, $cat, $idCat){
 function readInfoRecettesJour($cnx){
     $r = "SELECT recettes.id_recette, nom_recette, nom_photo FROM recettes 
     LEFT JOIN photos on recettes.id_recette = photos.id_recette
-    WHERE validation_admin = 1
-    ORDER BY RAND() LIMIT 1;";
+    WHERE validation_admin = 1;
+    ORDER BY RAND() LIMIT 1";
     $titres = $cnx->query($r);
     return $titres->fetch();
 }

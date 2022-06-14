@@ -25,11 +25,10 @@ $moyenneRecette = moyenneNote($notesRecette);
             <h2 class='section'><?php echo $valeursTableRecette[0]['nom_recette']?></h2>  
         </div>
         <div class="bandeauDroite">
-            <h3 class='username'> Par <?php echo $valeursTableRecette[0]['pseudo_utilisateur']?></h3>
-            <div class="etoilesRecette etoiles <?php echo choixClasseEtoiles($moyenneRecette) ?>">
-
-            </div>
-            <h3 class="avis"><?php echo $nbAvis ?>  avis </h3>
+                <h3 class='username'>Par <?php echo $valeursTableRecette[0]['pseudo_utilisateur']?> &nbsp</h3>
+                <div  id="etoilesBandeau" class="etoilesRecette etoiles <?php echo choixClasseEtoiles($moyenneRecette) ?>"></div>
+                <h3 class="avis"> <?php echo $nbAvis ?> avis </h3>
+        </div>  
         </div>
         </div>
         <?php echo htmlDescriptionRecette($categories, $regimes, $saisons, $valeursTableRecette)?>

@@ -413,6 +413,11 @@ h3{
     color: rgba(0, 0, 0, 0.53);
     margin-left: 80px;
 }
+.listIngredients ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
 /*.divPhoto{
     height: 550px;
     width: auto;
@@ -925,12 +930,41 @@ form h2{
     .corpsPageRecette{
         margin-top: 110px;
     }
+    #etoilesBandeau{
+        display: none;
+    }
     .cardIngredients img{
           display: none;
+      }
+    .h3Bandeau {
+        margin-left: 25px;
+        text-align: center;
     }
-    .listIngredients ul {
+    .bandeau .bandeauGauche{
+        width: 50%;
+        display: block;
+        margin-left: 10px;
+    }
+    .bandeau{
+        height: auto;
+    }
+    .bandeau h3{
+        font-size: 20px;
+    }
+    .bandeau h2{
+        margin-left: 0px;
+    }
+    .listIngredients{
+        justify-content: space-around;
+    }
+    
+    .listIngredients ul{
         flex-direction: column;
-  }
+    }
+    .ajouterListe {
+        font-size: 20px;
+    }
+
       /* PAGE propostionRecette VM */
     .proTitre{
           margin-top: 110px;
