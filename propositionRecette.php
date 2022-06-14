@@ -64,16 +64,18 @@ $ingredients = readIngredient($db);
                 <button class="selectionAjouter"  id="ajoutIngredient">Ajouter</button>
 
             </div>
-                <div class="ingredientAjout">
+             <div class="ingredientAjout">
                     <div class="listeIngredient">
-                        <dt></dt>
+                        <dt>
+                           
+                        </dt>
                     </div>
                     <div class="ajoutNouvelIngredient">
                         <input class="selectionAjouter" type="text" name="nouvelIngredient"  placeholder="Nouvel ingrédient"/>
                         <button class="selectionAjouter" name="ajoutNouvelIngredient">Ajouter l'ingrédient</button>
                     </div>
-                </div>
-            </div>
+             </div>
+        </div>
 
     <div class="selectionAjouterEtape" class='etapes' >
         <textarea name="etapes[]" placeholder="Etape1: Rentrez vous instructions" rows="5" cols="180"></textarea>

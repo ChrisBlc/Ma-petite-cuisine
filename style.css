@@ -13,6 +13,7 @@ a{
 button{
     cursor: pointer;
     font-family: inherit;
+    background-color: #FFFFFF;
 }
 button:hover{
     transform: scale(1.1);
@@ -437,6 +438,11 @@ h3{
     font-size: 30px;
     border-radius: 10px;
     padding: 3px;
+}
+.plusEtMoins{
+    background-color: #FFFFFF;
+    width: 30px;
+    border-radius: 30%;
 }
 .listIngredients{
     display: flex;

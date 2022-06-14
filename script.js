@@ -35,8 +35,6 @@ $(function(){
       
   })
  
-
-
   /* BANNIERE */
     $(document).ready(function(){
       if($(window).width() > 670) {
@@ -70,18 +68,56 @@ $(function(){
     $('.listeIngredient dt').append('<dd>' + quantite + ' ' + nom + '</dd>');
   });
 
+  /*Suppression ingredient*/
+  $('.supp').click(function (e) { 
+    e.preventDefault();
+    $(this).parent('.infoIngredient').remove();
+  });
+
  /* AJOUT INPUT HIDDEN etapes et dans la liste */
  $('#ajouterEtape').click(function (e) { 
    e.preventDefault();
    $("<textarea name='etapes[]' placeholder='Etape: Rentrez vous instructions' rows='5' cols='180'></textarea>").insertBefore('#divetape');
  });
+
+ /* Changement des quantité dans recette*/
+  var  parts = 4;
+  var oldparts = parts;
+  $('#nbParts').text(parts +'personne(s)');
+  $('#moins').click(function (e) { 
+    e.preventDefault();
+    if (parts==1){
+      alert('Impossible de cuisiner pour personne')
+    }
+    else{
+      oldparts = parts;
+      parts -= 1;
+    $('#nbParts').text(parts +'personne(s)');
+    $('.qtt').each(function (indexInArray, valueOfElement) { 
+      qtt = parseFloat($(valueOfElement).text())/oldparts;
+      newQtt = Math.round(qtt * parts * 2)/2;
+      $(valueOfElement).text(newQtt);
+    });
+    }
+  });
+  $('#plus').click(function (e) { 
+    e.preventDefault();
+      oldparts = parts;
+      parts += 1;
+    $('#nbParts').text(parts +'personne(s)');
+
+    $('.qtt').each(function (indexInArray, valueOfElement) { 
+      qtt = parseFloat($(valueOfElement).text())/oldparts;
+      newQtt =Math.round(qtt * parts * 2)/2;
+      $(valueOfElement).text(newQtt);
+    });
+  });
+ 
+ 
+  
 });
 
-/* var input = document.createElement("input");
-input.setAttribute("type", "hidden");
-input.setAttribute("name", "name_you_want");
-input.setAttribute("value", "value_you_want");
-document.getElementById("chells").appendChild(input); */
+
      
     
     

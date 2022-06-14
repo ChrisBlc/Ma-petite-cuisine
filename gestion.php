@@ -11,6 +11,7 @@ require_once('bdd.php');
 
 $recettesUser = readRecettesByUser($db, 2);
 $aValider = readRecetteAValider($db);
+$allRecette = readAllTitle($db);
 ?>
 
 <div class="gestionContainer">
@@ -18,6 +19,8 @@ $aValider = readRecetteAValider($db);
         <?php echo afficherRecetteGestion($recettesUser) ?>
     <h2> Recettes à valider </h2>
         <?php echo afficherRecetteGestion($aValider) ?>
+    <h2> Toutes les Recettes </h2>
+        <?php echo afficherRecetteGestion($allRecette) ?>
 </div>
 
 
