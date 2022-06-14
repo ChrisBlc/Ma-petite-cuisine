@@ -65,8 +65,8 @@ $ingredients = readIngredient($db);
                 <dt>
                     <?php foreach($ingredientsSelected as $ingredient){?>
                         <dd class='infoIngredient'>
-                        <input type='hidden' name="ingredients['id'][]" value='<?php echo $ingredient['id_ingredient'] ?>' />
-                        <input type='hidden' name="ingredients['quantite'][]" value='<?php echo $ingredient['nom_ingredient'] ?>' />
+                        <input type='hidden' name="ingredients[id][]" value='<?php echo $ingredient['id_ingredient'] ?>' />
+                        <input type='hidden' name="ingredients[quantite][]" value='<?php echo $ingredient['nom_ingredient'] ?>' />
                         <?php echo $ingredient['Dosage'].' '. $ingredient['nom_ingredient'] ?>
                         <button  class="selectionAjouter supp">Supprimer</button>
                         </dd>

@@ -457,6 +457,11 @@ h3{
     margin: 10px auto;
     justify-content: flex-start;
 }
+.listIngredients ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
 .cardIngredients img{
     display:block;
     margin: auto;
@@ -922,7 +927,6 @@ form h2{
     }
   
   /* PAGE RECETTE VM */
-
     .corpsPageRecette{
         margin-top: 110px;
     }
@@ -960,6 +964,7 @@ form h2{
     .ajouterListe {
         font-size: 20px;
     }
+
       /* PAGE propostionRecette VM */
     .proTitre{
           margin-top: 110px;

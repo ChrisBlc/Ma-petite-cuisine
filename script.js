@@ -3,6 +3,8 @@ $(function(){
   $('#mdpRecup').hide();
   $('.menuBurger').hide();
 
+
+
   /*CONNEXION*/
   $('.seConnecter').click(function (e) { 
     e.preventDefault();
