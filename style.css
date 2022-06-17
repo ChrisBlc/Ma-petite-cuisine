@@ -442,8 +442,17 @@ h3{
     font-family: 'Carter One';
     font-size: 30px;
     border-radius: 10px;
+    border: solid  1px black;
     padding: 3px;
+    cursor: pointer;
+    font-family: inherit;
+    background-color: #FFFFFF;
 }
+.ajouterListe:hover{
+    transform: scale(1.1);
+    transition: transform 0.3s;
+}
+
 .plusEtMoins{
     background-color: #FFFFFF;
     width: 30px;
@@ -813,7 +822,7 @@ form h2{
 
 
 /*VERSION MOBILE*/
-@media screen and (max-width: 670px) {
+@media all and (max-width: 670px) {
     /* BANNIERE VM*/
     .smallHeader h1{
         font-size: 17px;

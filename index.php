@@ -1,8 +1,17 @@
 <?php 
 session_start();
-$titrePage = 'Ma petite Cuisine';
 require_once("bdd.php");
 require_once("fonctions.php");
+$ids = readAllId($db);
+if (!isset($_COOKIE['idDuJour'])){ 
+    $idDuJour = strval(array_rand($ids)) + 1;
+    setcookie('idDuJour', $idDuJour, time()+(3600 *24));
+} 
+else {
+    $idDuJour = $_COOKIE['idDuJour'];
+}
+$titrePage = 'Ma petite Cuisine';
+
 require_once("banniere.php");
 if (isset($_GET['wrongmdp'])){
     echo "<script>alert('Mot de Passe ou Mail incorrect')</script>";
@@ -40,12 +49,12 @@ else{
     $cat = 'saisons';
     $recettes = readInfosRecettesByCat($db, $cat ,$id);
     $htmlTitre = "<h2>Tendance cette Saison</h2>";
-    $recetteJour = readInfoRecettesJour($db);
+    $recetteJour = readInfoRecettesById($db,$idDuJour);
 ?>
     <div class="platDuJour">
-        <a href="pageRecette.php?id=<?php echo $recetteJour['id_recette'] ?>">
-        <img src="img/PhotoRecettes/<?php echo $recetteJour['nom_photo'] ?>" alt="Photo de <?php echo $recetteJour['nom_photo'] ?>">
-        <div class="label">Recette au hasard: <?php echo $recetteJour['nom_recette'] ?> </div>
+        <a href="pageRecette.php?id=<?php echo $recetteJour[0]['id_recette'] ?>">
+        <img src="img/PhotoRecettes/<?php echo $recetteJour[0]['nom_photo'] ?>" alt="Photo de <?php echo $recetteJour[0]['nom_photo'] ?>">
+        <div class="label">Recette du jour: <?php echo $recetteJour[0]['nom_recette'] ?> </div>
         <a>
     </div>
     

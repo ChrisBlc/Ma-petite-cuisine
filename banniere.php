@@ -66,7 +66,7 @@
                 <button class="buttonInscription" type="submit">Connexion</button>
             </form>
             <div class="mdpOublie">
-                <a  id="lienMdpRecup">Mot de passe oublié?</a>
+                <a  href='contact.php' id="lienMdpRecup">Mot de passe oublié?</a>
                 <a href="inscription.php">Pas de compte? S'inscrire</a>
             </div>
             <div class="croix">X</div>
