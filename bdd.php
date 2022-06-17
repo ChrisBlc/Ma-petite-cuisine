@@ -39,10 +39,25 @@ function readInfosRecettesByCat($db, $cat, $idCat){
 function readInfoRecettesJour($cnx){
     $r = "SELECT recettes.id_recette, nom_recette, nom_photo FROM recettes 
     LEFT JOIN photos on recettes.id_recette = photos.id_recette
-    WHERE validation_admin = 1;
+    WHERE validation_admin = 1
     ORDER BY RAND() LIMIT 1";
     $titres = $cnx->query($r);
     return $titres->fetch();
+}
+
+function readAllId($cnx){
+    $r ="SELECT id_recette FROM recettes";
+    $ids = $cnx->query($r);
+    return $ids->fetchAll();
+}
+
+function readInfoRecettesById($cnx, $idRecette){
+    $r = "SELECT recettes.id_recette, nom_recette, nom_photo FROM recettes 
+    LEFT JOIN photos on recettes.id_recette = photos.id_recette
+    WHERE validation_admin = 1 AND recettes.id_recette = :idRecette ";
+    $req = $cnx->prepare($r);
+    $req->execute([':idRecette' => $idRecette ]) ;
+    return $req->fetchAll();
 }
 
 function readRecettesBySearch($cnx, $recherche){
@@ -175,7 +190,7 @@ function readplat($cnx, $nomTable){
 }
 
 function readIngredient($cnx){
-    $sql = " SELECT id_ingredient,nom_ingredient, ingredients.id_unite, nom_unite  FROM ingredients LEFT JOIN unites ON ingredients.id_unite = unites.id_unite";
+    $sql = " SELECT id_ingredient,nom_ingredient, ingredients.id_unite, nom_unite  FROM ingredients LEFT JOIN unites ON ingredients.id_unite = unites.id_unite  ORDER BY `ingredients`.`nom_ingredient` ASC";
     $ingredients = $cnx->query($sql);
     return$ingredients->fetchAll();
 }
@@ -263,7 +278,7 @@ function createRecette($cnx, $donnees , $idUser, $files){
     /* Ajout dans les tables de liaisons*/
     $idRecette = $cnx->lastInsertId();
     for($i=0; $i < count($donnees['ingredients']['id']); $i++ ){
-        $r = "INSERT INTO recettes_ingredients VALUES (:idRecette,:id_ingredient, :Dosage )";
+        $r = "INSERT INTO recettes_ingredients(id_recette, id_ingredient, Dosage) VALUES (:idRecette,:id_ingredient, :Dosage )";
         $req = $cnx->prepare($r);
         $ingredients = [
             ':idRecette' => $idRecette,
@@ -273,7 +288,7 @@ function createRecette($cnx, $donnees , $idUser, $files){
         $req->execute($ingredients);
     }
     for($i=0; $i < count($donnees['nom_categorie']); $i++ ){
-        $r = "INSERT INTO recettes_categories VALUES (:idRecette,:id_categorie)";
+        $r = "INSERT INTO recettes_categories(id_recette, id_categorie) VALUES (:idRecette,:id_categorie)";
         $req = $cnx->prepare($r);
         $categories = [
             ':idRecette' => $idRecette,
@@ -282,7 +297,7 @@ function createRecette($cnx, $donnees , $idUser, $files){
         $req->execute($categories);
     }
     for($i=0; $i < count($donnees['nom_saison']); $i++ ){
-        $r = "INSERT INTO recettes_saisons VALUES (:idRecette,:id_saison)";
+        $r = "INSERT INTO recettes_saisons(id_recette,id_saison) VALUES (:idRecette,:id_saison)";
         $req = $cnx->prepare($r);
         $categories = [
             ':idRecette' => $idRecette,
@@ -291,7 +306,7 @@ function createRecette($cnx, $donnees , $idUser, $files){
         $req->execute($categories);
     }
     for($i=0; $i < count($donnees['nom_regime']); $i++ ){
-        $r = "INSERT INTO recettes_regimes VALUES (:idRecette,:id_regime)";
+        $r = "INSERT INTO recettes_regimes(id_recette,id_regime) VALUES (:idRecette,:id_regime)";
         $req = $cnx->prepare($r);
         $categories = [
             ':idRecette' => $idRecette,

@@ -42,7 +42,7 @@ $moyenneRecette = moyenneNote($notesRecette);
             <div>
                 <button class="plusEtMoins" id='moins'> - </button> <span id='nbParts'></span>  <button class="plusEtMoins"  id='plus'> + </button>
             </div>
-            <button class="ajouterListe">Ajouter à ma liste</button>
+            <a href='listeCourse.php' class="ajouterListe">Ajouter à ma liste</a>
         </div>
         <div class="listIngredients">
             <ul>
